@@ -6,7 +6,7 @@
 - Belinda Boudra - [GitHub](https://github.com/Belicuss)
 - Jonas Flacher - [GitHub](https://github.com/Jonas69700)
 - Jordan Philippot - [GitHub](https://github.com/Jordan-Philippot)
-- Alexandre landissem - [GitHub](https://github.com/asab1rd)
+- Alexandre Alandissem - [GitHub](https://github.com/Alex97410)
 - Zacharie Bizimana - [GitHub](https://github.com/asab1rd)
 
 ## Descriptions

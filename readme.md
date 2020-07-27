@@ -2,12 +2,12 @@
 
 ## Members
 
-- Priscilla Joly
-- Belinda Boudra
-- Jonas Flacher
-- Jordan Philippot
-- Alexandre landissem
-- Zacharie Bizimana
+- Priscilla Joly - [GitHub](https://github.com/SekmSet)
+- Belinda Boudra - [GitHub](https://github.com/Belicuss)
+- Jonas Flacher - [GitHub](https://github.com/Jonas69700)
+- Jordan Philippot - [GitHub](https://github.com/Jordan-Philippot)
+- Alexandre landissem - [GitHub](https://github.com/asab1rd)
+- Zacharie Bizimana - [GitHub](https://github.com/asab1rd)
 
 ## Descriptions
 

@@ -16,4 +16,12 @@ et la gestion des moyens de paiement ainsi que la possibilité de suivre ces com
 
 Pour réaliser ce projet nous avons décider d'utiliser le framework PHP Symfony 5 et la bibliotèque JavaScript React !
 
+## Start the application
+
+```bash
+symfony server:start
+```
+
 ## Links
+
+[api-platform website](https://api-platform.com/)

@@ -18,7 +18,14 @@ Pour réaliser ce projet nous avons décider d'utiliser le framework PHP Symfony
 
 ## How to clone the GithHub repository ?
 
+Click on the green `code` button of the repository and copy/past the SSH command line *(git@github.com:SekmSet/e-commerce.git)*
+If you don't have the SSH switch to change ;) 
 
+Then you have juste to past the SSH command in your terminal : 
+
+```bash 
+git clone git@github.com:SekmSet/e-commerce.git
+```
  
 ## Start the application
 

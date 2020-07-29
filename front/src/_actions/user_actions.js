@@ -37,6 +37,17 @@ export function loginUser(dataToSubmit) {
   };
 }
 
+export async function loginUserTest(id) {
+  const request = await axios
+    .get(`${USER_SERVER}/${id}`)
+    .then((response) => response.data);
+  return {
+    type: LOGIN_USER,
+    payload: true,
+    user: request,
+  };
+}
+
 export function auth() {
   const request = axios
     .get(`${USER_SERVER}/auth`)
@@ -56,5 +67,12 @@ export function logoutUser() {
   return {
     type: LOGOUT_USER,
     payload: request,
+  };
+}
+
+export function logoutUserTest() {
+  return {
+    type: LOGOUT_USER,
+    payload: false,
   };
 }

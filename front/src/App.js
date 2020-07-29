@@ -1,17 +1,37 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "./_actions/user_actions";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./components/Login/Login";
+import Header from "./components/Header/Header";
+import Register from "./components/Register/Register";
+import { useSelector } from "react-redux";
 function App() {
-  const dispatch = useDispatch();
-
+  const [isAuth, setIsAuth] = useState(false); //Will be replaced by a method that checks if user is authenticated
+  const user = useSelector((state) => state.user);
   useEffect(() => {
-    getUsers().then((data) => dispatch(data));
-  }, [dispatch]);
-  const { users } = useSelector((state) => state.user);
-  useEffect(() => {
-    console.log(users ? users["hydra:member"] : "no User");
-  }, [users]);
-  return <div className="App">{users && <> OK</>}</div>;
+    if (user.loginSucces) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [user]);
+  return (
+    <div className="App">
+      {!isAuth && (
+        <>
+          <Login />
+          <Register />
+        </>
+      )}
+      {isAuth && (
+        <Router>
+          <Header />
+          <Switch>
+            <Route></Route>
+          </Switch>
+        </Router>
+      )}
+    </div>
+  );
 }
 
 export default App;

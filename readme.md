@@ -22,10 +22,42 @@ Pour réaliser ce projet nous avons décider d'utiliser le framework PHP Symfony
  
 ## Start the application
 
+In `ecommerce` folder : 
+
 ```bash
+composer install
 symfony server:start
 ```
 
 ## Links
 
+### API-Platform
+
 [api-platform website](https://api-platform.com/)
+
+[Read more on API-Platform](http://kaliop.com/fr/introduction-aux-api-et-api-platform/#:~:text=API-Platform%20est%20une%20distribution,quelques%20annotations%20sur%20nos%20Entit%C3%A9s.&text=API-Platform%20permet%20non-seulement,format%20OpenAPI%20(ex%20Swagger).)
+
+[Doc distribution](https://api-platform.com/docs/distribution/)
+
+### Symfony
+
+[MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle/index.html)
+
+[Validation](https://symfony.com/doc/current/validation.html)
+
+### Alice 
+
+[Alice Bundle GitHub](https://github.com/hautelook/AliceBundle)
+
+### Faker
+
+[GitHub](https://github.com/fzaninotto/Faker#fakerproviderlorem)
+
+### others 
+
+[Composer](https://getcomposer.org/doc/00-intro.md#downloading-the-composer-executable)
+
+
+
+
+

@@ -64,6 +64,11 @@ class User
      */
     private $phone;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Commande::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $commande;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +154,23 @@ class User
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        // set the owning side of the relation if necessary
+        if ($commande->getUser() !== $this) {
+            $commande->setUser($this);
+        }
 
         return $this;
     }

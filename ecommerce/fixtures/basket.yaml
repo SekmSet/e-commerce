@@ -1,0 +1,5 @@
+App\Entity\Basket:
+  basket_{1..10}:
+    total_price: <numberBetween(1,1000)>
+    product: "plusieurs articles"
+    user: '@user_<current()>'

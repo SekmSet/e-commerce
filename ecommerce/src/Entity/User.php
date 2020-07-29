@@ -64,6 +64,11 @@ class User
      */
     private $phone;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Basket::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $basket;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +154,23 @@ class User
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getBasket(): ?Basket
+    {
+        return $this->basket;
+    }
+
+    public function setBasket(Basket $basket): self
+    {
+        $this->basket = $basket;
+
+        // set the owning side of the relation if necessary
+        if ($basket->getUser() !== $this) {
+            $basket->setUser($this);
+        }
 
         return $this;
     }

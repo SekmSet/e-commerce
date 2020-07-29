@@ -1,0 +1,8 @@
+App\Entity\Articles:
+  article_{1..10}:
+    name: <name()>
+    description: <text(200)>
+    color: <colorName()>
+    prices: <numberBetween(5,200)>
+    images: <imageUrl(640, 480)()>
+    average_grades: <numberBetween(1,5)>

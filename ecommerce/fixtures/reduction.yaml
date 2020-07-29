@@ -1,0 +1,4 @@
+App\Entity\Reduction:
+  user_{1..10}:
+   code: <firstName()>
+   percentage: <numberBetween(10, 90)>

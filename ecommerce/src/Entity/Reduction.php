@@ -22,12 +22,12 @@ class Reduction
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Coded;
+    private $coded;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      */
-    private $Percentage;
+    private $percentage;
 
     public function getId(): ?int
     {
@@ -36,24 +36,24 @@ class Reduction
 
     public function getCoded(): ?string
     {
-        return $this->Coded;
+        return $this->coded;
     }
 
-    public function setCoded(string $Coded): self
+    public function setCoded(string $coded): self
     {
-        $this->Coded = $Coded;
+        $this->coded = $coded;
 
         return $this;
     }
 
     public function getPercentage(): ?string
     {
-        return $this->Percentage;
+        return $this->percentage;
     }
 
-    public function setPercentage(string $Percentage): self
+    public function setPercentage(string $percentage): self
     {
-        $this->Percentage = $Percentage;
+        $this->percentage = $percentage;
 
         return $this;
     }

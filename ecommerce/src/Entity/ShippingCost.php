@@ -27,22 +27,22 @@ class ShippingCost
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Country;
+    private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Weight;
+    private $weight;
+
+    /**
+     * @ORM\Column(type="integer", length=255)
+     */
+    private $prices;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Prices;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Free;
+    private $free;
 
     public function getId(): ?int
     {
@@ -63,48 +63,48 @@ class ShippingCost
 
     public function getCountry(): ?string
     {
-        return $this->Country;
+        return $this->country;
     }
 
-    public function setCountry(string $Country): self
+    public function setCountry(string $country): self
     {
-        $this->Country = $Country;
+        $this->country = $country;
 
         return $this;
     }
 
     public function getWeight(): ?string
     {
-        return $this->Weight;
+        return $this->weight;
     }
 
-    public function setWeight(string $Weight): self
+    public function setWeight(string $weight): self
     {
-        $this->Weight = $Weight;
+        $this->weight = $weight;
 
         return $this;
     }
 
     public function getPrices(): ?string
     {
-        return $this->Prices;
+        return $this->prices;
     }
 
-    public function setPrices(string $Prices): self
+    public function setPrices(string $prices): self
     {
-        $this->Prices = $Prices;
+        $this->prices = $prices;
 
         return $this;
     }
 
     public function getFree(): ?string
     {
-        return $this->Free;
+        return $this->free;
     }
 
-    public function setFree(string $Free): self
+    public function setFree(string $free): self
     {
-        $this->Free = $Free;
+        $this->free = $free;
 
         return $this;
     }

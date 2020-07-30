@@ -49,5 +49,6 @@ jobs:
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
       - name: Load migration and migrations and apply fixtures
         run: |
+          make database
           make migrate
           make fixture

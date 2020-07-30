@@ -1,6 +1,9 @@
 composer:
 	composer install
 
+database:
+	php bin/console doctrine:database:create
+
 migration:
 	php bin/console make:migration
 

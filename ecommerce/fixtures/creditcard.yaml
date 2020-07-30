@@ -1,6 +1,7 @@
-App\Entity\Avis:
-  avis_{1..10}:
+App\Entity\CreditCard:
+  creditCard_{1..10}:
     typecard: <creditCardType()>
     numbercard: <creditCardNumber()>
     dateexp: <creditCardExpirationDate()>
     cvv: <numberBetween(100, 999)>
+    user: '@user_*'

@@ -165,7 +165,7 @@
         "version": "2.8.1"
     },
     "php": {
-        "version": "7.2"
+        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -430,9 +430,6 @@
     },
     "twig/twig": {
         "version": "v3.0.4"
-    },
-    "webimpress/safe-writer": {
-        "version": "2.0.1"
     },
     "webmozart/assert": {
         "version": "1.9.1"

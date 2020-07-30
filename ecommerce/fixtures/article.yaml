@@ -1,8 +1,8 @@
-App\Entity\Articles:
+App\Entity\Article:
   article_{1..10}:
     name: <word()>
     description: <text(200)>
     color: <safeColorName()>
-    prices: <numberBetween(5, 200)>
+    price: <numberBetween(5, 200)>
     images: <imageUrl(640, 480)>
     average_grades: <numberBetween(0, 5)>

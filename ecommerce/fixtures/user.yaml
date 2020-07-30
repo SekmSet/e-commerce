@@ -1,9 +1,0 @@
-App\Entity\User:
-  user_{1..10}:
-    username: <firstName()>
-    name: <name()>
-    surname: <lastName()>
-    phone: <phoneNumber()>
-    email: <email()>
-    role: 'admin'
-    password: 'password'

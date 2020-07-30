@@ -20,7 +20,7 @@ class Avis
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Articles::class)
+     * @ORM\ManyToOne(targetEntity=Article::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
@@ -46,12 +46,12 @@ class Avis
         return $this->id;
     }
 
-    public function getArticle(): ?Articles
+    public function getArticle(): ?Article
     {
         return $this->article;
     }
 
-    public function setArticle(?Articles $article): self
+    public function setArticle(?Article $article): self
     {
         $this->article = $article;
 

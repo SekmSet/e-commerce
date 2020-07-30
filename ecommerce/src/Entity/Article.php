@@ -3,15 +3,15 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ArticlesRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
-class Articles
+class Article
 {
     /**
      * @ORM\Id()
@@ -38,7 +38,7 @@ class Articles
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prices;
+    private $price;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -91,14 +91,14 @@ class Articles
         return $this;
     }
 
-    public function getPrices(): ?string
+    public function getPrice(): ?string
     {
-        return $this->prices;
+        return $this->price;
     }
 
-    public function setPrices(string $prices): self
+    public function setPrice(string $price): self
     {
-        $this->prices = $prices;
+        $this->price = $price;
 
         return $this;
     }

@@ -16,6 +16,9 @@ class CreditCard
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @ORM\OneToOne(targetEntity=Command::class, mappedBy="creditCards", cascade={"persist", "remove"})
+     *
      */
     private $id;
 

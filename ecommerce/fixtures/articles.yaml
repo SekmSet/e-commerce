@@ -6,3 +6,4 @@ App\Entity\Article:
     price: <numberBetween(5,200)>
     images: <imageUrl(640, 480)()>
     average_grades: <numberBetween(1,5)>
+    

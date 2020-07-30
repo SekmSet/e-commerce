@@ -1,0 +1,7 @@
+App\Entity\CreditCard:
+  creditcard_{1..10}:
+    typecard: <typecard()>
+    numbercard: <creditCardNumber()>
+    dateexp: <dateexp()>
+    cvv: <numberBetween()>
+    user: '@user_*'

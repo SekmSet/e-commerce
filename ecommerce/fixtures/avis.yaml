@@ -1,0 +1,6 @@
+App\Entity\Avis:
+  avis_{1..10}:
+    note: <numberBetween(0, 5)>
+    comment: <text(150)>
+    user: '@user_1'
+    article: '@article_*'

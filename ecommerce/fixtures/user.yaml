@@ -6,3 +6,4 @@ App\Entity\User:
     phone: <phoneNumber()>
     email: <email()>
     plainPassword: 'password'
+    

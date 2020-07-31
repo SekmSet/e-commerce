@@ -1,0 +1,8 @@
+App\Entity\ShippingCost:
+  shippingCost_{1..10}:
+    carrier: <word()>
+    country: <country()>
+    weight: <numberBetween('1','1000')>
+    prices: <randomFloat('1','999999')>
+    free: <randomElement(['free','not free'])>
+    

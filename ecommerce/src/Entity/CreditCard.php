@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CreditCardRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,6 +18,9 @@ class CreditCard
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @ORM\OneToOne(targetEntity=Command::class, mappedBy="creditCards", cascade={"persist", "remove"})
+     *
      */
     private $id;
 
@@ -44,6 +49,16 @@ class CreditCard
      * @ORM\Column(type="integer")
      */
     private $cvv;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="payment")
+     */
+    private $commands;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +121,37 @@ class CreditCard
     public function setCvv(int $cvv): self
     {
         $this->cvv = $cvv;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setPayment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->contains($command)) {
+            $this->commands->removeElement($command);
+            // set the owning side to null (unless already changed)
+            if ($command->getPayment() === $this) {
+                $command->setPayment(null);
+            }
+        }
 
         return $this;
     }

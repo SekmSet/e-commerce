@@ -5,3 +5,4 @@ App\Entity\ShippingCost:
     weight: <numberBetween('1','1000')>
     prices: <randomFloat('1','999999')>
     free: <randomElement(['free','not free'])>
+    

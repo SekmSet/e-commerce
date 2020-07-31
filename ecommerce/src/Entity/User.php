@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -54,11 +55,12 @@ class User
      */
     private $password;
 
+    private $plainPassword;
+
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -152,16 +154,29 @@ class User
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
     {
-        return $this->role;
+        return $this->plainPassword;
     }
 
-    public function setRole(string $role): self
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
     {
-        $this->role = $role;
+        $this->plainPassword = $plainPassword;
+    }
 
-        return $this;
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function getPhone(): ?string
@@ -225,34 +240,44 @@ class User
     }
 
 
-/**
- * @return Collection|Command[]
- */
-public function getCommands(): Collection
-{
-    return $this->commands;
-}
-
-public function addCommand(Command $command): self
-{
-    if (!$this->commands->contains($command)) {
-        $this->commands[] = $command;
-        $command->setUser($this);
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
     }
 
-    return $this;
-}
-
-public function removeCommand(Command $command): self
-{
-    if ($this->commands->contains($command)) {
-        $this->commands->removeElement($command);
-        // set the owning side to null (unless already changed)
-        if ($command->getUser() === $this) {
-            $command->setUser(null);
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setUser($this);
         }
+
+        return $this;
     }
 
-    return $this;
-}
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->contains($command)) {
+            $this->commands->removeElement($command);
+            // set the owning side to null (unless already changed)
+            if ($command->getUser() === $this) {
+                $command->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

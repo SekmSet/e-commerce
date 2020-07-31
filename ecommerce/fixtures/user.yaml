@@ -5,5 +5,4 @@ App\Entity\User:
     surname: <lastName()>
     phone: <phoneNumber()>
     email: <email()>
-    role: 'admin'
-    password: 'password'
+    plainPassword: 'password'

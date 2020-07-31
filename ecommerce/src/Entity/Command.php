@@ -16,27 +16,19 @@ class Command
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     *
-     * @ORM\OneToOne(targetEntity=creditCards::class, inversedBy="commande", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
      */
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="command", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $command_number;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $products;
+    private $command_number;
 
     /**
      * @ORM\Column(type="float")
@@ -44,24 +36,33 @@ class Command
     private $weight;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Adress::class, inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $adress;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\ManyToOne(targetEntity=ShippingCost::class, inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $price_ship;
+    private $shipping_cost;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Reduction::class, inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $carrier;
+    private $reduction;
 
     /**
      * @ORM\Column(type="float")
      */
     private $total_price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CreditCard::class, inversedBy="commands")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $payment;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -78,33 +79,21 @@ class Command
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getCommandNumber(): ?int
+    public function getCommandNumber(): ?string
     {
         return $this->command_number;
     }
 
-    public function setCommandNumber(int $command_number): self
+    public function setCommandNumber(string $command_number): self
     {
         $this->command_number = $command_number;
-
-        return $this;
-    }
-
-    public function getProducts(): ?string
-    {
-        return $this->products;
-    }
-
-    public function setProducts(string $products): self
-    {
-        $this->products = $products;
 
         return $this;
     }
@@ -121,38 +110,38 @@ class Command
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAdress(): ?Adress
     {
         return $this->adress;
     }
 
-    public function setAdress(string $adress): self
+    public function setAdress(?Adress $adress): self
     {
         $this->adress = $adress;
 
         return $this;
     }
 
-    public function getPriceShip(): ?float
+    public function getShippingCost(): ?ShippingCost
     {
-        return $this->price_ship;
+        return $this->shipping_cost;
     }
 
-    public function setPriceShip(float $price_ship): self
+    public function setShippingCost(?ShippingCost $shipping_cost): self
     {
-        $this->price_ship = $price_ship;
+        $this->shipping_cost = $shipping_cost;
 
         return $this;
     }
 
-    public function getCarrier(): ?string
+    public function getReduction(): ?Reduction
     {
-        return $this->carrier;
+        return $this->reduction;
     }
 
-    public function setCarrier(string $carrier): self
+    public function setReduction(?Reduction $reduction): self
     {
-        $this->carrier = $carrier;
+        $this->reduction = $reduction;
 
         return $this;
     }
@@ -165,6 +154,18 @@ class Command
     public function setTotalPrice(float $total_price): self
     {
         $this->total_price = $total_price;
+
+        return $this;
+    }
+
+    public function getPayment(): ?CreditCard
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(?CreditCard $payment): self
+    {
+        $this->payment = $payment;
 
         return $this;
     }

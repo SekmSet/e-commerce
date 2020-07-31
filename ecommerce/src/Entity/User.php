@@ -77,13 +77,14 @@ class User
     private $creditCards;
 
     /**
-     * @ORM\OneToOne(targetEntity=Command::class, mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user")
      */
-    private $command;
+    private $commands;
 
     public function __construct()
     {
         $this->creditCards = new ArrayCollection();
+        $this->commands = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -223,20 +224,35 @@ class User
         return $this;
     }
 
-    public function getCommand(): ?Command
-    {
-        return $this->command;
+
+/**
+ * @return Collection|Command[]
+ */
+public function getCommands(): Collection
+{
+    return $this->commands;
+}
+
+public function addCommand(Command $command): self
+{
+    if (!$this->commands->contains($command)) {
+        $this->commands[] = $command;
+        $command->setUser($this);
     }
 
-    public function setCommand(Command $command): self
-    {
-        $this->command = $command;
+    return $this;
+}
 
-        // set the owning side of the relation if necessary
-        if ($command->getUser() !== $this) {
-            $command->setUser($this);
+public function removeCommand(Command $command): self
+{
+    if ($this->commands->contains($command)) {
+        $this->commands->removeElement($command);
+        // set the owning side to null (unless already changed)
+        if ($command->getUser() === $this) {
+            $command->setUser(null);
         }
-
-        return $this;
     }
+
+    return $this;
+}
 }

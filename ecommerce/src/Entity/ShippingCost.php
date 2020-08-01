@@ -9,7 +9,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "post"
+ *     },
+ *     itemOperations={
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "put",
+ *          "delete"
+ *     },
+ * )
  * @ORM\Entity(repositoryClass=ShippingCostRepository::class)
  */
 class ShippingCost

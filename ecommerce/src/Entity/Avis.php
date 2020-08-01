@@ -7,7 +7,19 @@ use App\Repository\AvisRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "post" = {"security" = "is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "put" = {"security" = "object.getUser() == user"},
+ *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *     },
+ * )
+ *
  * @ORM\Entity(repositoryClass=AvisRepository::class)
  */
 class Avis

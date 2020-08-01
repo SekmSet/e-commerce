@@ -12,3 +12,6 @@ migrate:
 
 fixture:
 	php bin/console hautelook:fixtures:load -n
+
+start:
+	symfony server:start

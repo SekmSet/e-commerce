@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Controller\Action\GetMeAction;
 
 
 /**
@@ -21,7 +22,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     itemOperations={
  *          "get" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },
  *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },
- *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object == user" }
+ *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },
+ *          "get_me_action"={
+ *              "method" = "GET",
+ *              "path" = "/me",
+ *              "security" = "is_granted('ROLE_USER')",
+ *              "controller" = GetMeAction::class,
+ *              "openapi_context"={
+ *                 "parameters"={}
+ *              },
+ *              "read"=false,
+ *          }
  *     },
  * )
  *

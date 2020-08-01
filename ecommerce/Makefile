@@ -11,7 +11,7 @@ migrate:
 	php bin/console doctrine:migrations:migrate -n
 
 fixture:
-	php bin/console hautelook:fixtures:load -n
+	php bin/console hautelook:fixtures:load -n --purge-with-truncate
 
 start:
 	symfony server:start

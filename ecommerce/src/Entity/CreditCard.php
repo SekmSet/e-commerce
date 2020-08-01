@@ -9,7 +9,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get",
+ *          "post" = {"security"="is_granted('ROLE_USER')" }
+ *     },
+ *     itemOperations={
+ *          "get" = {"security"="object.getUser() == user"},
+ *          "put" = {"security"="object.getUser() == user"},
+ *          "delete" = {"security"="object.getUser() == user"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=CreditCardRepository::class)
  */
 class CreditCard

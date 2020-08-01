@@ -8,7 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "post"
+ *     },
+ *     itemOperations={
+ *          "get" = { "security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "put",
+ *          "delete"
+ *     },
+ * )
+ *
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
 class Article

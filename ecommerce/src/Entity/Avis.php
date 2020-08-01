@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     },
  *     itemOperations={
  *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
- *          "put" = {"security" = "object.getUser() == user"},
+ *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *     },
  * )

@@ -12,7 +12,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get",
+ *          "post"
+ *     },
+ *     itemOperations={
+ *          "get" = {"security" = "is_granted('ROLE_USER') or object.getUser() == user" },
+ *          "put" = {"security" = "is_granted('ROLE_USER') or object.getUser() == user" },
+ *          "delete" = {"security" = "is_granted('ROLE_USER') or object.getUser() == user" }
+ *     },
+ * )
+ *
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface

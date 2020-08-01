@@ -7,8 +7,19 @@ use App\Repository\BasketRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
- * @ORM\Entity(repositoryClass=BasketRepository::class)
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get",
+ *          "post" = {"security" = "is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *          "get" = {"security" = "is_granted('ROLE_USER')" },
+ *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *     },
+ * )
+ * * @ORM\Entity(repositoryClass=BasketRepository::class)
  */
 class Basket
 {

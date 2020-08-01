@@ -11,7 +11,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get",
+ *          "post"
+ *     },
+ *     itemOperations={
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *          "put",
+ *          "delete",
+ *     },
+ * )
+ *
  * @ORM\Entity(repositoryClass=ReductionRepository::class)
  */
 class Reduction

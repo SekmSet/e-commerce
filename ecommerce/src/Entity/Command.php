@@ -7,7 +7,19 @@ use App\Repository\CommandRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get" = {"security" = "is_granted('ROLE_USER')" },
+ *          "post" = {"security" = "is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *          "get" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user" },
+ *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *     },
+ * )
+ *
  * @ORM\Entity(repositoryClass=CommandRepository::class)
  */
 class Command

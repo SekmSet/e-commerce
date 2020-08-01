@@ -9,7 +9,19 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     collectionOperations={
+ *          "get" = { "security" = "is_granted('ROLE_USER')" },
+ *          "post" = { "security" = "is_granted('ROLE_USER')" }
+ *     },
+ *     itemOperations={
+ *          "get" = { "security" = "is_granted('ROLE_ADMIN') or object.getUser() == user" },
+ *          "put" = { "security" = "is_granted('ROLE_ADMIN') or object.getUser() == user" },
+ *          "delete" = { "security" = "is_granted('ROLE_ADMIN') or object.getUser() == user" }
+ *     },
+ * )
+ *
  * @ORM\Entity(repositoryClass=AdressRepository::class)
  */
 class Adress
@@ -22,7 +34,7 @@ class Adress
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

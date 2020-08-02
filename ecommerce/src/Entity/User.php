@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "post"
  *     },
  *     itemOperations={
- *          "get" = {"security" = "is_granted('ROLE_ADMIN') or object != user" },
+ *          "get" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },
  *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },
  *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object == user" }
  *     },

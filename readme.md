@@ -57,7 +57,10 @@ symfony server:start
 
 [Composer](https://getcomposer.org/doc/00-intro.md#downloading-the-composer-executable)
 
+### Testing react
 
+[test conencted component with redux](https://testing-library.com/docs/example-react-redux)
 
+[test reducer with redux](https://redux.js.org/recipes/writing-tests)
 
-
+[running-tests](https://create-react-app.dev/docs/running-tests/)

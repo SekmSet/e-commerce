@@ -1,9 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import Login from "./components/Login/Login";
+import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Register from "./components/Register/Register";
-import { useSelector } from "react-redux";
 function App() {
   const user = useSelector((state) => state.user);
 
@@ -19,7 +21,9 @@ function App() {
         <Router>
           <Header />
           <Switch>
-            <Route></Route>
+            <Route path="/shippingCost">
+              <ShippingCost />
+            </Route>
           </Switch>
         </Router>
       )}

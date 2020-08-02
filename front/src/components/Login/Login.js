@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginUserTest } from "../../_actions/user_actions";
+import { loginUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
 function Login() {
@@ -9,8 +9,9 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    loginUserTest("1").then((data) => dispatch(data));
+    loginUser({username, password}).then((data) => dispatch(data));
   };
+
   return (
     <div className="login-view">
       <div className="username">

@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
       return { ...state, userData: action.payload };
     case LOGOUT_USER:
       window.localStorage.removeItem('token');
-      return { ...state, loginSucces: action.payload };
+      return { ...state, loginSucces: action.payload, token: null };
     case GET_USERS:
       return { ...state, users: action.payload };
     default:

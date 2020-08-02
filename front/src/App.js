@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from "./components/Login/Login";
+import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Register from "./components/Register/Register";
 import { useSelector } from "react-redux";
@@ -26,7 +27,9 @@ function App() {
         <Router>
           <Header />
           <Switch>
-            <Route></Route>
+            <Route path="/shippingCost">
+              <ShippingCost />
+            </Route>
           </Switch>
         </Router>
       )}

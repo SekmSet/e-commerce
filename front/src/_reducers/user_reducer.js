@@ -6,15 +6,25 @@ import {
   GET_USERS,
 } from "../_actions/ACTION_TYPES";
 
-export default function (state = {}, action) {
+const token = window.localStorage.getItem('token');
+
+const initialState = {
+  //  loginSucces: token ? true: false,
+  loginSucces: !!token,
+  token,
+}
+
+export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_USER:
       return { ...state, register: action.payload };
     case LOGIN_USER:
-      return { ...state, loginSucces: action.payload, user: action.user };
+      window.localStorage.setItem('token', action.token);
+      return { ...state, loginSucces: action.payload, token: action.token };
     case AUTH_USER:
       return { ...state, userData: action.payload };
     case LOGOUT_USER:
+      window.localStorage.removeItem('token');
       return { ...state, loginSucces: action.payload };
     case GET_USERS:
       return { ...state, users: action.payload };

@@ -5,8 +5,9 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   GET_USERS,
+
 } from "./ACTION_TYPES";
-import { USER_SERVER } from "../config";
+import {AUTHENTICATION_SERVER, USER_SERVER} from "../config";
 
 export async function getUsers() {
   const request = await axios
@@ -27,24 +28,15 @@ export async function registerUser(dataToSubmit) {
   };
 }
 
-export function loginUser(dataToSubmit) {
-  const request = axios
-    .post(`${USER_SERVER}/login`, dataToSubmit)
-    .then((response) => response.data);
-  return {
-    type: LOGIN_USER,
-    payload: request,
-  };
-}
-
-export async function loginUserTest(id) {
+export async function loginUser({username, password}) {
   const request = await axios
-    .get(`${USER_SERVER}/${id}`)
+    .post(`${AUTHENTICATION_SERVER}`, {username, password})
     .then((response) => response.data);
+
   return {
     type: LOGIN_USER,
     payload: true,
-    user: request,
+    token: request.token,
   };
 }
 

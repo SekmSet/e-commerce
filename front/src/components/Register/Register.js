@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{ useState } from "react";
 import { registerUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
@@ -15,7 +15,6 @@ function Register() {
     e.preventDefault();
     registerUser({username, name, surname, email, password, phone}).then((data) => dispatch(data));
   };
-
 
   return (
       <div className="register_view">
@@ -72,7 +71,6 @@ function Register() {
           <label htmlFor="phone">Phone</label>
           <input
               type="tel"
-              pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
               id="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}

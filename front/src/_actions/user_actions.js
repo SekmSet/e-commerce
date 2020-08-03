@@ -18,9 +18,9 @@ export async function getUsers() {
     payload: request,
   };
 }
-export async function registerUser(dataToSubmit) {
+export async function registerUser({username, name, surname, email, password, phone}) {
   const request = await axios
-    .post(`${USER_SERVER}/register`, dataToSubmit)
+    .post(`${USER_SERVER}`, {username, name, surname, email, password, phone})
     .then((response) => response.data);
   return {
     type: REGISTER_USER,

@@ -25,6 +25,9 @@ function App() {
             <Route path="/shippingCost">
               <ShippingCost />
             </Route>
+          <Route path="/Articles_show">
+            <Articles_show />
+          </Route>
           </Switch>
         </Router>
       )}

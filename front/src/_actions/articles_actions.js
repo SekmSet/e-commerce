@@ -4,7 +4,7 @@ GET_ARTICLES
 } from "./ACTION_TYPES";
 import { ARTICLES_SERVER } from "../config";
 
-export async function getArticles() {
+export async function articles() {
     const request = await axios
         .get(`${ARTICLES_SERVER}`)
         .then((response) => response.data);

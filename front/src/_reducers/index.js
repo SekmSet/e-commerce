@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import user from "./user_reducer";
 import shippingCosts from "./shipping_cost_reducer";
+import getArticles from "./articles_reducer";
 
 const allReducers = combineReducers({
   user,

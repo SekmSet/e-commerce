@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import {useDispatch} from "react-redux";
-import {getArticles} from "../../_actions/articles_actions";
+import { articles } from "../../_actions/articles_actions";
+
+
 function Articles_show() {
     const dispatch = useDispatch();
+    /*const art = useSelector((state) => state.articles);*/
 
-    const handleArticles = (e) => {
-        const [articles, setArticles] = useState("");
-        e.preventDefault();
-        getArticles().then((data) => dispatch(data));
-    };
+    useEffect(() => {
+        articles().then((data) => dispatch(data));
+    }, [dispatch]);
+
+    /*console.log(getArticles)*/
+
     return (
         <div className="Articles_show">
-
-                <label htmlFor="username">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+            <h1>A R T I C L E S</h1>
+           {/* {articles.list?.['hydra:member'].map(articles => ({}));*/}
         </div>
     );
 }

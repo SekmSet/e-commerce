@@ -11,8 +11,17 @@ function Header() {
   };
   return (
     <header>
-      <Link to="/shippingCost">shippingCost</Link>
-      <button onClick={handleDisconnect}>Deco</button>
+        <ul>
+            <li>
+                <Link to="/shippingCost">shippingCost</Link>
+            </li>
+            <li>
+                <Link to="/registry">SignUp</Link>
+            </li>
+            <li>
+                <button onClick={handleDisconnect}>Deco</button>
+            </li>
+        </ul>
     </header>
   );
 }

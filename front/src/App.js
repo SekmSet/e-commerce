@@ -11,22 +11,29 @@ function App() {
 
   return (
     <div className="App">
-      {!user.loginSucces && (
-        <div>
-          <Login />
-          <Register />
-        </div>
-      )}
-      {user.loginSucces && (
+      {/*{!user.loginSucces && (*/}
+      {/*  <div>*/}
+      {/*    <Login />*/}
+      {/*    <Register />*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      {/*{user.loginSucces && (*/}
         <Router>
           <Header />
           <Switch>
+
             <Route path="/shippingCost">
               <ShippingCost />
             </Route>
+
+            <Route path="/registry">
+              <Login />
+              <Register />
+            </Route>
+
           </Switch>
         </Router>
-      )}
+      {/*)}*/}
     </div>
   );
 }

@@ -1,18 +1,33 @@
 import React from "react";
 import { logoutUserTest } from "../../_actions/user_actions";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { Link } from "react-router-dom";
 
 function Header() {
   const dispatch = useDispatch();
-  const handleDisconnect = (e) => {
+  const user = useSelector((state) => state.user);
+
+    const handleDisconnect = (e) => {
     e.preventDefault();
     dispatch(logoutUserTest());
   };
   return (
     <header>
-      <Link to="/shippingCost">shippingCost</Link>
-      <button onClick={handleDisconnect}>Deco</button>
+        <ul>
+            <li>
+                <Link to="/shippingCost">shippingCost</Link>
+            </li>
+            {!user.loginSucces && (
+                <li>
+                    <Link to="/registry">SignUp</Link>
+                </li>
+            )}
+            {user.loginSucces && (
+                <li>
+                    <button onClick={handleDisconnect}>Deco</button>
+                </li>
+            )}
+        </ul>
     </header>
   );
 }

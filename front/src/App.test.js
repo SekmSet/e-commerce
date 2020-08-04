@@ -20,7 +20,7 @@ it('render app when not logged in', () => {
         }
     });
 
-    expect(screen.getAllByText('LOGIN'))
+    expect(screen.getAllByText('SignUp'))
 });
 
 it('render app when logged in', () => {

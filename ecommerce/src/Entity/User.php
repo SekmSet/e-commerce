@@ -17,7 +17,7 @@ use App\Controller\Action\GetMeAction;
  *     attributes={"security"="is_granted('ROLE_ADMIN')"},
  *     collectionOperations={
  *          "get",
- *          "post"
+ *          "post" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
  *     },
  *     itemOperations={
  *          "get" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },
@@ -88,6 +88,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="^((06)|(07))[0-9]{8}$"),
+     *     match=false,
+     *     message="Your number is not correct"
      */
     private $phone;
 

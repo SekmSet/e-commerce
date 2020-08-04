@@ -16,6 +16,7 @@ function ArticlesShow() {
             {Articles.list?.['hydra:member'].map(Article => (
                 <div key={Article.id}>
                     {Article.name}<br/>
+                    <a href={`/ArticlesShow/${Article.id}`}>Voir</a>
                     <hr/>
                 </div>
             ))}

@@ -15,6 +15,9 @@ function Header() {
     <header>
         <ul>
             <li>
+                <Link to="/ArticlesShow">Shop</Link>
+            </li>
+            <li>
                 <Link to="/shippingCost">shippingCost</Link>
             </li>
             {!user.loginSucces && (

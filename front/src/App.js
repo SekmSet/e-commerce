@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login/Login";
-import ArticlesShow from "./components/Articles/Articles";
-import PageArticleShow from "./components/PageArticle/pageArticle";
+import Articles from "./components/Articles/Articles";
+import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Register from "./components/Register/Register";
@@ -18,10 +18,12 @@ function App() {
               <ShippingCost />
             </Route>
 
-            <Route path="/PageArticleShow/:id" component={PageArticleShow}/>
+            <Route path="/articles/:id">
+              <Article />
+            </Route>
 
-            <Route path="/ArticlesShow">
-              <ArticlesShow />
+            <Route path="/articles">
+              <Articles />
             </Route>
 
             <Route path="/registry">

@@ -25,7 +25,7 @@ function App() {
             <Route path="/shippingCost">
               <ShippingCost />
             </Route>
-          <Route path="/Articles_show">
+          <Route path="/ArticlesShow">
             <ArticlesShow />
           </Route>
           </Switch>

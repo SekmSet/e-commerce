@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { articles } from "../../_actions/articles_actions";
 import {useDispatch, useSelector} from "react-redux";
 
-function Articles_show() {
+function ArticlesShow() {
     const dispatch = useDispatch();
     const Articles = useSelector((state) => state.articles);
 
@@ -23,4 +23,4 @@ function Articles_show() {
     )
 }
 
-export default Articles_show;
+export default ArticlesShow;

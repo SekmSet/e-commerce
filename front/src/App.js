@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Login from "./components/Login/Login";
-import Articles_show from "./components/Articles/Articles";
+import ArticlesShow from "./components/Articles/Articles";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Register from "./components/Register/Register";
@@ -26,7 +26,7 @@ function App() {
               <ShippingCost />
             </Route>
           <Route path="/Articles_show">
-            <Articles_show />
+            <ArticlesShow />
           </Route>
           </Switch>
         </Router>

@@ -1,15 +1,15 @@
 import axios from "axios";
 import {
-    GET_ARTICLES
+    GET_PAGE_ARTICLE
 } from "./ACTION_TYPES";
-import { ARTICLES_SERVER } from "../config";
+import { PAGE_ARTICLES_SERVER } from "../config";
 
-export async function articles() {
+export async function pageArticle() {
     const request = await axios
-        .get(`${ARTICLES_SERVER}`)
+        .get(`${PAGE_ARTICLES_SERVER}`)
         .then((response) => response.data);
     return {
-        type: GET_ARTICLES,
+        type: GET_PAGE_ARTICLE,
         payload: request,
     };
 }

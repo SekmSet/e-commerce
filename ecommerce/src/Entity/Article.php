@@ -6,6 +6,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+
 
 /**
  * @ApiResource(
@@ -20,6 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "delete"
  *     },
  * )
+ * @ApiFilter(SearchFilter::class, properties={"name": "partial", "description": "partial"})
  *
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */

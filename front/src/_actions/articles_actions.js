@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     GET_ARTICLE,
-    GET_ARTICLES
+    GET_ARTICLES,
     FILTER_ARTICLES_BY_NAME,
 } from "./ACTION_TYPES";
 import {ARTICLES_SERVER} from "../config";

@@ -7,40 +7,43 @@ import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Register from "./components/Register/Register";
 import Search from "./components/Articles/Search";
+import Cart from "./components/ShippingCart/ShippingCart";
 
 function App() {
-  return (
-      <div className="App">
-        <Router>
-          <Header />
-          <Switch>
+    return (
+        <div className="App">
+            <Router>
+                <Header />
+                <Switch>
+                    <Route path="/cart">
+                        <Cart/>
+                    </Route>
 
-            <Route path="/shippingCost">
-              <ShippingCost />
-            </Route>
+                    <Route path="/shippingCost">
+                        <ShippingCost />
+                    </Route>
 
-            <Route path="/articles/:id">
-              <Article />
-            </Route>
+                    <Route path="/articles/:id">
+                        <Article />
+                    </Route>
 
-            <Route path="/articles">
-              <Articles />
-            </Route>
+                    <Route path="/articles">
+                        <Articles />
+                    </Route>
 
+                    <Route path="/articles/search">
+                        <Search />
+                    </Route>
 
-            <Route path="/articles/search">
-              <Search />
-            </Route>
+                    <Route path="/registry">
+                        <Login />
+                        <Register />
+                    </Route>
 
-            <Route path="/registry">
-              <Login />
-              <Register />
-            </Route>
-
-          </Switch>
-        </Router>
-      </div>
-  );
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;

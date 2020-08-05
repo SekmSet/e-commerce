@@ -31,7 +31,7 @@ function Header() {
                         <button onClick={handleDisconnect}>Deco</button>
                     </li>
                 )}
-            </ul> */}
+            </ul> 
         </header>
     );
 }

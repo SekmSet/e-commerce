@@ -1,5 +1,10 @@
 .login-view {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
     display: flex;
+    width: 100vw;
     height: 100vh;
     @include media("<=1024px") {
         flex-direction: column;

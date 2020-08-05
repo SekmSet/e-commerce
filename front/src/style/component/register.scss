@@ -1,9 +1,9 @@
-.login-view {
-    display: none;
-}
-
 .register_view {
-    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100vw;
     height: 100vh;
     @include media("<=1024px") {
         flex-direction: column;

@@ -15,20 +15,22 @@ export function addToCart({article}){
             type: ADD_TO_CART,
             article
         };
+}
 
-};
 export async function removeFromCart({id}){
     return {
         type: REMOVE_FROM_CART,
         id,
     };
-};
+}
+
 export async function subtractQuantity({id}){
     return {
         type: SUB_QUANTITY,
         id,
     };
-};
+}
+
 export async function addQuantity({id}){
     const request = await axios
         .get(`${BASKET_ARTICLES}`)
@@ -38,12 +40,10 @@ export async function addQuantity({id}){
         payload: request,
         id,
     };
-};
+}
+
 export async function emptyCart(){
-    const request = await axios
-        .get(`${BASKET_ARTICLES}`)
-        .then((response) => response.data);
     return {
         type: EMPTY_CART,
     };
-};
+}

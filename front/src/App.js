@@ -6,6 +6,7 @@ import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Registry from './components/Authentication'
 import Search from "./components/Articles/Search";
+import Cart from "./components/ShippingCart/ShippingCart";
 import "./style/App.scss";
 
 function App() {
@@ -15,6 +16,10 @@ function App() {
       <Router>
         <Header />
         <Switch>
+
+          <Route path="/cart">
+            <Cart/>
+          </Route>
 
           <Route path="/shippingCost">
             <ShippingCost />

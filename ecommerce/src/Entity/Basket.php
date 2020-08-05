@@ -9,18 +9,30 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *
  *     collectionOperations={
- *          "get",
- *          "post" = {"security" = "is_granted('ROLE_USER')"}
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "post"
  *     },
  *     itemOperations={
- *          "get" = {"security" = "is_granted('ROLE_USER')" },
- *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
- *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *          "get" = { "security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "put",
+ *          "delete"
  *     },
  * )
  * * @ORM\Entity(repositoryClass=BasketRepository::class)
  */
+
+/*
+collectionOperations={
+    *          "get",
+ *          "post" = {"security" = "is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+    *          "get" = {"security" = "is_granted('ROLE_USER')" },
+ *          "put" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *     },*/
 class Basket
 {
     /**

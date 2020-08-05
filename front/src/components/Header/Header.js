@@ -5,17 +5,18 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user);
 
     const handleDisconnect = (e) => {
-    e.preventDefault();
-    dispatch(logoutUserTest());
-  };
+        e.preventDefault();
+        dispatch(logoutUserTest());
+    };
+
   return (
     <header>
         <ul>
             <li>
-                <Link to="/ArticlesShow">Shop</Link>
+                <Link to="/articles">Shop</Link>
             </li>
             <li>
                 <Link to="/shippingCost">shippingCost</Link>

@@ -1,22 +1,23 @@
 import React, {useEffect} from "react";
-import { articles } from "../../_actions/articles_actions";
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import { getArticles } from "../../_actions/articles_actions";
 
 function ArticlesShow() {
     const dispatch = useDispatch();
-    const Articles = useSelector((state) => state.articles);
+    const articles = useSelector((state) => state.articles);
 
     useEffect(() => {
-        articles().then((data) => dispatch(data));
+        getArticles().then((data) => dispatch(data));
     }, [dispatch]);
 
     return (
         <div>
             <h1> Articles_show </h1>
-            {Articles.list?.['hydra:member'].map(Article => (
-                <div key={Article.id}>
-                    {Article.name}<br/>
-                    <a href={`/ArticlesShow/${Article.id}`}>Voir</a>
+            {articles.list['hydra:member']?.map(article => (
+                <div key={article.id}>
+                    {article.name}<br/>
+                    <Link to={`/articles/${article.id}`}>Voir</Link>
                     <hr/>
                 </div>
             ))}

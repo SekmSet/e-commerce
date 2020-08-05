@@ -6,6 +6,7 @@ import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
 import Register from "./components/Register/Register";
+import Search from "./components/Articles/Search";
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
 
             <Route path="/articles">
               <Articles />
+            </Route>
+
+
+            <Route path="/articles/search">
+              <Search />
             </Route>
 
             <Route path="/registry">

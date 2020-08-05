@@ -21,6 +21,9 @@ function Header() {
                 <li>
                     <Link to="/shippingCost">shippingCost</Link>
                 </li>
+                <li>
+                    <Link to="/cart">cart</Link>
+                </li>
                 {!user.loginSucces && (
                     <li>
                         <Link to="/registry">SignUp</Link>

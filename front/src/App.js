@@ -4,8 +4,9 @@ import Articles from "./components/Articles/Articles";
 import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
 import Header from "./components/Header/Header";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Search from "./components/Articles/Search";
-import Registry from "./components/Authentication"
 import "./style/App.scss";
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
             </Route>
 
           <Route path="/registry">
-            <Registry />
+            <Login />
+            <Register />
           </Route>
 
         </Switch>

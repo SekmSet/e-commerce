@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
         case GET_ARTICLES:
             return { ...state, list: action.payload };
         case GET_ARTICLE:
-            return { ...state, list: action.payload };
+            return { ...state, show: action.payload };
         case FILTER_ARTICLES_BY_NAME:
             return { ...state, filteredList: action.payload};
         default:

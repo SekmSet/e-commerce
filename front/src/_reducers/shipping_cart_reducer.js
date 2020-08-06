@@ -14,39 +14,36 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
+            const found = state.products.find(a => a.id === action.article.id);
+
+            if (found) {
+                found.quantity += 1;
+                return state;
+            }
             return {
                 ...state,
-                products: [...state.products, action.article],
-            };
-        case REMOVE_FROM_CART:
-            return {
-                ...state,
-                products: state.products.map(product =>
-                    product.id === action.id
-                        ? {...product, selected: false, quantity: 1}
-                        : product,
-                ),
-            };
-        case ADD_QUANTITY:
-            return {
-                ...state,
-                products: state.products.map(product =>
-                    product.id === action.id
-                        ? {...product, quantity: product.quantity + 1}
-                        : product,
-                ),
+                products: [...state.products, {...action.article, quantity: 1}],
+
             };
         case SUB_QUANTITY:
+            // looking for articles where id = id
+            const results = state.products.find(product => {
+                return product.id === action.article.id
+            });
+
+            if (results) {
+                results.quantity -= 1;
+                // remove product if quantity lower than 1
+                if (results.quantity < 1) {
+                    const rest = state.products.filter(res => res.id !== action.article.id);
+                    return {
+                        ...state,
+                        products: [...rest],
+                    };
+                }
+            }
             return {
-                ...state,
-                products: state.products.map(product =>
-                    product.id === action.id
-                        ? {
-                            ...product,
-                            quantity: product.quantity !== 1 ? product.quantity - 1 : 1,
-                        }
-                        : product,
-                ),
+                ...state
             };
         case EMPTY_CART:
             return {

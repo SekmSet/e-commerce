@@ -90,10 +90,11 @@ const ArticleElement = ({ article }) => {
 
     tl.to(articleRef.current, 0.75, {
       backgroundColor: "initial",
+      color: "initial",
       filter: "grayscale(1)",
       yPercent: 0,
       ease: Bounce.easeOut,
-    });
+    }).set(articleRef.current, { clearProps: "all" });
   };
   useEffect(() => {
     pageTransition("in");

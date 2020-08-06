@@ -33,10 +33,14 @@ body {
   display: none;
 }
 body {
+  background-color: $coolBg;
   &.dark-mode {
     background-color: $coolBlack !important;
     * {
-      color: $coolWhite !important;
+      color: $coolWhite;
+    }
+    h1 {
+      color: $coolTitle;
     }
   }
 }
@@ -47,5 +51,5 @@ body {
   height: 100vh;
   position: absolute;
   background-color: $coolYellow;
-  visibility: hidden;
+  display: none;
 }

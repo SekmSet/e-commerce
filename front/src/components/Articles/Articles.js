@@ -67,6 +67,23 @@ const ArticleElement = ({ article }) => {
   );
 };
 
+const ArticleElement = ({ article }) => {
+  return (
+    <div className="article-selector">
+      <img
+        className="article-image"
+        src={article.images}
+        alt={"image" + article.name}
+      />
+      <div className="details">
+        <h5 className="article-name">{article.name}</h5>
+        <span className="price"> &euro; {article.price} </span>
+      </div>
+      <Link to={`/articles/${article.id}`}>Voir</Link>
+    </div>
+  );
+};
+
 function ArticlesShow() {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles);

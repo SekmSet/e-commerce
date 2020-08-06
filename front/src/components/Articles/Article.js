@@ -71,7 +71,7 @@ function PageArticleShow() {
 
       <div className="details">
         <div className="titles">
-          <h2 className="name">{article.name}</h2>
+          <h2 className="name tk-ivymode">{article.name}</h2>
           <span className="color"> {article.color} </span>
         </div>
         <p className="description">{article.description}</p>

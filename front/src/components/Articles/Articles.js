@@ -18,6 +18,7 @@ const ArticleElement = ({ article }) => {
       0.25,
       {
         backgroundColor: "#010101",
+        color: "#ffffff",
         filter: "sepia(.5)",
         yPercent: 10,
         ease: Power1.easeIn,
@@ -30,10 +31,11 @@ const ArticleElement = ({ article }) => {
 
     tl.to(articleRef.current, 0.75, {
       backgroundColor: "initial",
+      color: "initial",
       filter: "grayscale(1)",
       yPercent: 0,
       ease: Bounce.easeOut,
-    });
+    }).set(articleRef.current, { clearProps: "all" });
   };
   useEffect(() => {
     pageTransition("in");
@@ -75,7 +77,7 @@ function ArticlesShow() {
 
   return (
     <div className="articles-container">
-      <h1> Tous les produits </h1>
+      <h1 className="tk-ivymode"> - Tous les produits </h1>
       <div className="articles">
         {articles.list["hydra:member"]?.map((article) => (
           <ArticleElement key={article.id} article={article} />

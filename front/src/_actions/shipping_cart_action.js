@@ -24,10 +24,10 @@ export async function removeFromCart({id}){
     };
 }
 
-export async function subtractQuantity({id}){
+export function subtractQuantity({article}){
     return {
         type: SUB_QUANTITY,
-        id,
+        article,
     };
 }
 

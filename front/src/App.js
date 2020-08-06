@@ -5,13 +5,12 @@ import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
 // eslint-disable-next-line
 import Header from "./components/Header/Header";
-import Registry from './components/Authentication'
+import Registry from "./components/Authentication";
 import Search from "./components/Articles/Search";
 import Cart from "./components/ShippingCart/ShippingCart";
 import "./style/App.scss";
 
 function App() {
-
   return (
     <div className="App">
       <Router>

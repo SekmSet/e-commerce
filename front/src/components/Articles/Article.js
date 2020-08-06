@@ -5,7 +5,7 @@ import { getArticle } from "../../_actions/articles_actions";
 
 function PageArticleShow() {
     const dispatch = useDispatch();
-    const article = useSelector((state) => state.articles.show);
+    const article = useSelector((state) => state.articles.list);
     const { id } = useParams();
 
     useEffect(() => {

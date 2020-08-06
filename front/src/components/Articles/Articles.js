@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// eslint-disable-next-line
 import { Link, useHistory } from "react-router-dom";
 import { getArticles } from "../../_actions/articles_actions";
 import { addToCart } from "../../_actions/shipping_cart_action";
 import { TimelineMax, Power1, Bounce } from "gsap";
+import { pageTransition } from "../../animations/Transitions";
 
 const ArticleElement = ({ article }) => {
   const articleRef = useRef(null);
@@ -15,10 +17,10 @@ const ArticleElement = ({ article }) => {
       articleRef.current,
       0.25,
       {
-        backgroundColor: "#F8C027",
+        backgroundColor: "#010101",
         filter: "sepia(.5)",
         yPercent: 10,
-        ease: Power1.easeOut,
+        ease: Power1.easeIn,
       },
       0,
     );
@@ -33,9 +35,13 @@ const ArticleElement = ({ article }) => {
       ease: Bounce.easeOut,
     });
   };
+  useEffect(() => {
+    pageTransition("in");
+  }, []);
 
   const handleClick = () => {
-    history.push(`/articles/${article.id}`);
+    const changePage = () => history.push(`/articles/${article.id}`);
+    pageTransition("out", changePage);
   };
   return (
     <div

@@ -32,3 +32,20 @@ body {
   background-color: $coolYellow;
   display: none;
 }
+body {
+  &.dark-mode {
+    background-color: $coolBlack !important;
+    * {
+      color: $coolWhite !important;
+    }
+  }
+}
+
+#anim {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: $coolYellow;
+  visibility: hidden;
+}

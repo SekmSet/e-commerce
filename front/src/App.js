@@ -11,9 +11,10 @@ import "./style/App.scss";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App dark-mode">
+      <div id="anim"></div>
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Switch>
           <Route path="/shippingCost">
             <ShippingCost />

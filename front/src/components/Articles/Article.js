@@ -1,6 +1,7 @@
 // import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { pageTransition } from "../../animations/Transitions";
 import { TimelineMax } from "gsap";
 
 import {
@@ -24,6 +25,7 @@ function PageArticleShow() {
   useEffect(() => {
     getArticle({ id }).then((data) => dispatch(data));
     getComments({ id }).then((data) => dispatch(data));
+    pageTransition("in");
   }, [id, dispatch]);
 
   const handleComment = (e) => {
@@ -75,6 +77,13 @@ function PageArticleShow() {
         <p className="description">{article.description}</p>
         <p className="description">{article.description}</p>
         <br />
+        {/* <div className="sizes">
+          <h5>SIZES</h5>
+          <button className="size">S</button>
+          <button className="size">M</button>
+          <button className="size">L</button>
+          <button className="size">XL</button>
+        </div> */}
         <button
           className="add-to-cart"
           onMouseMove={handleMouseMove}

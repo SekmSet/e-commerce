@@ -4,15 +4,17 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     normalizationContext={"groups"={"read"}},
  *     collectionOperations={
  *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
  *          "post"
@@ -33,38 +35,50 @@ class Article
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $color;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
+     */
+    private $average_grades;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="article")
+     * @Groups({"read"})
      */
     private $images;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $average_grades;
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,18 +133,6 @@ class Article
         return $this;
     }
 
-    public function getImages(): ?string
-    {
-        return $this->images;
-    }
-
-    public function setImages(string $images): self
-    {
-        $this->images = $images;
-
-        return $this;
-    }
-
     public function getAverageGrades(): ?string
     {
         return $this->average_grades;
@@ -139,6 +141,37 @@ class Article
     public function setAverageGrades(string $average_grades): self
     {
         $this->average_grades = $average_grades;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getArticle() === $this) {
+                $image->setArticle(null);
+            }
+        }
 
         return $this;
     }

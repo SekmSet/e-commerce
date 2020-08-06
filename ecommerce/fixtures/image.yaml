@@ -1,0 +1,4 @@
+App\Entity\Image:
+  image_{1..30}:
+    url: <imageUrl(640, 480)>
+    article: '@article_*'

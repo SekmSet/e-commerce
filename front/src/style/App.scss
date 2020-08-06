@@ -5,14 +5,21 @@
 @import "./component/articles.scss";
 @import "./component/article.scss";
 @import "./component/header.scss";
+@import "./fonts.scss";
 * {
   box-sizing: border-box;
+  font-family: transat-text, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 body {
+  background-color: $coolBg;
   &.dark-mode {
     background-color: $coolBlack !important;
     * {
-      color: $coolWhite !important;
+      color: $coolWhite;
+    }
+    h1 {
+      color: $coolTitle;
     }
   }
 }
@@ -23,5 +30,5 @@ body {
   height: 100vh;
   position: absolute;
   background-color: $coolYellow;
-  visibility: hidden;
+  display: none;
 }

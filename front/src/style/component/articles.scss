@@ -6,9 +6,9 @@
     transform-origin: 0 0;
     transform: rotate(-90deg);
     text-transform: uppercase;
-    bottom: 40%;
+    bottom: 20%;
     left: 2%;
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
   .articles {
     display: flex;
@@ -20,7 +20,9 @@
       margin: 0 2.5% 5% 2.5%;
       filter: grayscale(1);
       img {
-        width: 250px;
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
       }
       .details {
         display: flex;

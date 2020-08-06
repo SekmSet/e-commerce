@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\AvisRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *     attributes={"security"="is_granted('ROLE_ADMIN')"},
+ *     normalizationContext={"groups"={"read"}},
  *     collectionOperations={
  *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
  *          "post" = {"security" = "is_granted('ROLE_USER')"}
@@ -19,37 +23,43 @@ use Doctrine\ORM\Mapping as ORM;
  *          "delete" = {"security" = "is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *     },
  * )
+ * @ApiFilter(SearchFilter::class, properties={"article" : "exact"})
  *
- * @ORM\Entity(repositoryClass=AvisRepository::class)
+ * @ORM\Entity(repositoryClass=CommentRepository::class)
  */
-class Avis
+class Comment
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Article::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"read"})
      */
     private $article;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"read"})
      */
     private $user;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $note;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read"})
      */
     private $comment;
 

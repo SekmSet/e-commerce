@@ -3,8 +3,24 @@ import {
     GET_ARTICLE,
     GET_ARTICLES,
     FILTER_ARTICLES_BY_NAME,
+    GET_ARTICLE_COMMENTS,
 } from "./ACTION_TYPES";
-import {ARTICLES_SERVER} from "../config";
+
+import {
+    ARTICLES_SERVER,
+    COMMENTS_SERVER
+} from "../config";
+
+export async function getComments({id}) {
+    const request = await axios
+        .get(`${COMMENTS_SERVER}?article=${id}`)
+        .then((response) => response.data);
+    return {
+        type: GET_ARTICLE_COMMENTS,
+        payload: request,
+    };
+}
+
 
 export async function getArticles() {
     const request = await axios

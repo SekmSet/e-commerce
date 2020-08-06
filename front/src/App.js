@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Articles from "./components/Articles/Articles";
 import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
+// eslint-disable-next-line
 import Header from "./components/Header/Header";
 import Registry from './components/Authentication'
 import Search from "./components/Articles/Search";
@@ -33,7 +34,12 @@ function App() {
           </Route>
 
           <Route path="/registry">
+<<<<<<< HEAD
             <Registry />
+=======
+            <Login />
+            <Register />
+>>>>>>> Articles started
           </Route>
         </Switch>
       </Router>

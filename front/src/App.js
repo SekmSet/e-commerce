@@ -5,18 +5,16 @@ import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
 // eslint-disable-next-line
 import Header from "./components/Header/Header";
-import Registry from './components/Authentication'
+import Registry from "./components/Authentication";
 import Search from "./components/Articles/Search";
 import "./style/App.scss";
 
 function App() {
-
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
-
           <Route path="/shippingCost">
             <ShippingCost />
           </Route>
@@ -34,12 +32,7 @@ function App() {
           </Route>
 
           <Route path="/registry">
-<<<<<<< HEAD
             <Registry />
-=======
-            <Login />
-            <Register />
->>>>>>> Articles started
           </Route>
         </Switch>
       </Router>

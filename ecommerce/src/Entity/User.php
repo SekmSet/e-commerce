@@ -88,10 +88,6 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Regex(
-     *     pattern="^((06)|(07))[0-9]{8}$"),
-     *     match=false,
-     *     message="Your number is not correct"
      */
     private $phone;
 

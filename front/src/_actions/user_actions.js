@@ -1,11 +1,10 @@
-import axios from "axios";
+import axios from "./axios";
 import {
   LOGIN_USER,
   REGISTER_USER,
   AUTH_USER,
   LOGOUT_USER,
   GET_USERS,
-
 } from "./ACTION_TYPES";
 import {AUTHENTICATION_SERVER, USER_SERVER} from "../config";
 
@@ -18,6 +17,7 @@ export async function getUsers() {
     payload: request,
   };
 }
+
 export async function registerUser({username, name, surname, email, password, phone}) {
   const request = await axios
     .post(`${USER_SERVER}`, {username, name, surname, email, password, phone})
@@ -37,6 +37,7 @@ export async function loginUser({username, password}) {
     type: LOGIN_USER,
     payload: true,
     token: request.token,
+    refresh_token: request.refresh_token,
   };
 }
 

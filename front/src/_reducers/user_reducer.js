@@ -20,11 +20,13 @@ export default function (state = initialState, action) {
       return { ...state, register: action.payload };
     case LOGIN_USER:
       window.localStorage.setItem('token', action.token);
+      window.localStorage.setItem('refresh_token', action.refresh_token);
       return { ...state, loginSucces: action.payload, token: action.token };
     case AUTH_USER:
       return { ...state, userData: action.payload };
     case LOGOUT_USER:
       window.localStorage.removeItem('token');
+      window.localStorage.removeItem('refresh_token');
       return { ...state, loginSucces: action.payload, token: null };
     case GET_USERS:
       return { ...state, users: action.payload };

@@ -15,7 +15,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"read"}},
  *     collectionOperations={
  *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
- *          "post" = {"security" = "is_granted('ROLE_USER')"}
+ *          "post" = {
+ *              "security" = "is_granted('ROLE_USER')",
+ *              "controller" = App\Controller\Api\CommentCreateController::class
+ *          },
  *     },
  *     itemOperations={
  *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },

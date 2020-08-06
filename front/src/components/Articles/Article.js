@@ -1,32 +1,67 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router";
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { getArticle } from "../../_actions/articles_actions";
+import { TimelineMax } from "gsap";
 
 function PageArticleShow() {
-    const dispatch = useDispatch();
-    const article = useSelector((state) => state.articles.show);
-    const { id } = useParams();
+  const dispatch = useDispatch();
+  const article = useSelector((state) => state.articles.show);
+  const { id } = useParams();
+  const btnTextRef = useRef(null);
+  const buttonRef = useRef(null);
 
-    useEffect(() => {
-        getArticle({id}).then((data) => dispatch(data));
-    }, [id, dispatch]);
+  useEffect(() => {
+    getArticle({ id }).then((data) => dispatch(data));
+  }, [id, dispatch]);
 
-    return (
-        <div>
-            <h1> Id Article </h1>
+  const handleMouseMove = ({ screenY, screenX, clientX }) => {
+    const tl = new TimelineMax();
+    //We must calculate the button position onHover
+    const x =
+      screenX -
+      buttonRef.current.offsetLeft -
+      btnTextRef.current.offsetLeft -
+      10;
+    //Then apply these position to our GSAP
+    tl.to(btnTextRef.current, 0.15, {
+      backgroundColor: "#4f659f",
+      x: x,
+      ease: "Power5.easeOut",
+    });
+    console.log(screenY, btnTextRef.current.offsetTop);
+  };
 
-            {article.name}
-            <br/>
-            {article.description}
-            <br/>
-            {article.color}
-            <br/>
-            {article.price}
-            <br/>
-            <img src={article.images} alt={article.name} />
+  const handleMouseLeave = () => {
+    const tl = new TimelineMax();
+    tl.to(btnTextRef.current, 0.2, { x: 0, ease: "Expo.easeOut" });
+  };
+  return (
+    <div className="article-container">
+      <div className="images">
+        <img src={article.images} alt={article.name} />
+      </div>
+      <div className="details">
+        <div className="titles">
+          <h2 className="name">{article.name}</h2>
+          <span className="color"> {article.color} </span>
         </div>
-    )
+        <p className="description">{article.description}</p>
+        <p className="description">{article.description}</p>
+        <br />
+        <button
+          className="add-to-cart"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          ref={buttonRef}
+        >
+          <div className="btn-text" ref={btnTextRef}>
+            Buy
+          </div>
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default PageArticleShow;

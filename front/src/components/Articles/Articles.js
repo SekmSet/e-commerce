@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getArticles } from "../../_actions/articles_actions";
-import {addToCart} from "../../_actions/shipping_cart_action";
+import { addToCart } from "../../_actions/shipping_cart_action";
 import { TimelineMax, Power1, Bounce } from "gsap";
 
 const ArticleElement = ({ article }) => {
@@ -47,7 +47,7 @@ const ArticleElement = ({ article }) => {
     >
       <img
         className="article-image"
-        src={article.images}
+        src={article.images[0].url}
         alt={"image" + article.name}
       />
       <div className="details">
@@ -67,28 +67,6 @@ function ArticlesShow() {
     getArticles().then((data) => dispatch(data));
   }, [dispatch]);
 
-<<<<<<< HEAD
-    const handleAddCart = (e, article) => {
-        e.preventDefault();
-        dispatch(addToCart({article}));
-    };
-
-    return (
-        <div>
-            <h1> Articles_show </h1>
-            {articles.list['hydra:member']?.map(article => (
-                <div key={article.id}>
-                    {article.name}<br/>
-                    <Link to={`/articles/${article.id}`}>Voir</Link>
-                    <button onClick={e => handleAddCart(e, article)}>
-                        Add to cart
-                    </button>
-                    <hr/>
-                </div>
-            ))}
-        </div>
-    )
-=======
   return (
     <div className="articles-container">
       <h1> Tous les produits </h1>
@@ -99,7 +77,6 @@ function ArticlesShow() {
       </div>
     </div>
   );
->>>>>>> A little view of the articles show page, with some gsap animation
 }
 
 export default ArticlesShow;

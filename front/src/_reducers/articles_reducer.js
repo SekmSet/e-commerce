@@ -6,6 +6,7 @@ import {
 
 const initialState = {
     list:{},
+    show:{},
     filteredList:{},
 }
 

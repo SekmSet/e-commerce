@@ -25,6 +25,7 @@ export default function (state = initialState, action) {
                 products: [...state.products, {...action.article, quantity: 1}],
 
             };
+
         case SUB_QUANTITY:
             // looking for articles where id = id
             const results = state.products.find(product => {
@@ -45,15 +46,9 @@ export default function (state = initialState, action) {
             return {
                 ...state
             };
-        case EMPTY_CART:
-            return {
-                ...state,
-                products: state.products.map(product =>
-                    product.selected
-                        ? {...product, selected: false, quantity: 1}
-                        : product,
-                ),
-            };
+
+        case REMOVE_FROM_CART:
+          return {...initialState};
         default:
             return state;
     }

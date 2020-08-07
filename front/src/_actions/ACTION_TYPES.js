@@ -7,3 +7,6 @@ export const GET_SHIPPING_COSTS = "get_shipping_costs";
 export const GET_ARTICLES = "get_articles"
 export const GET_ARTICLE = "get_article"
 export const FILTER_ARTICLES_BY_NAME = "filter_articles_by_name";
+export const GET_ARTICLE_COMMENTS = "get_artcile_comments";
+export const POST_ARTICLE_COMMENT = "post_artcile_comments";
+

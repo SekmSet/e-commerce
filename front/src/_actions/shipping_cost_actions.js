@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios";
 import {
     GET_SHIPPING_COSTS,
 } from "./ACTION_TYPES";

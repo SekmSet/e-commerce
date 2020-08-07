@@ -28,7 +28,6 @@ function PageArticleShow() {
     return (
         <div>
             <h1> Id Article </h1>
-
             {article.name}
             <br/>
             {article.description}

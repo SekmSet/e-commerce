@@ -26,4 +26,4 @@ export const GET_ARTICLE_COMMENTS = "get_article_comments";
 export const POST_ARTICLE_COMMENT = "post_article_comments";
 
 /* show profile */
-export const GET_SHOWUSER = "get_showUser";
+export const GET_PROFILE = "get_profile";

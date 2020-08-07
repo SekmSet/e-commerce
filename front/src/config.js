@@ -5,4 +5,4 @@ export const ARTICLES_SERVER = `${SERVER_URI}/api/articles`;
 export const COMMENTS_SERVER = `${SERVER_URI}/api/comments`;
 export const SHIPPING_COST_SERVER = `${SERVER_URI}/api/shipping_costs`;
 export const BASKET_ARTICLES = `${SERVER_URI}/api/baskets`;
-export const SHOWUSER_SERVER = `${SERVER_URI}/api/me`;
+export const PROFILE_SERVER = `${SERVER_URI}/api/me`;

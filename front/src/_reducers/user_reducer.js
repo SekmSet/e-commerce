@@ -4,11 +4,13 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   GET_USERS,
+  GET_PROFILE,
 } from "../_actions/ACTION_TYPES";
 
 const token = window.localStorage.getItem('token');
 
 const initialState = {
+  profile:{},
   //  loginSucces: token ? true: false,
   loginSucces: !!token,
   token,
@@ -30,6 +32,8 @@ export default function (state = initialState, action) {
       return { ...state, loginSucces: action.payload, token: null };
     case GET_USERS:
       return { ...state, users: action.payload };
+    case GET_PROFILE:
+      return {...state, profile: action.payload};
     default:
       return state;
   }

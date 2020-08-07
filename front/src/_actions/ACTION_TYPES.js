@@ -22,6 +22,8 @@ export const EMPTY_CART = 'EMPTY_CART';
 
 /* search article */
 export const FILTER_ARTICLES_BY_NAME = "filter_articles_by_name";
-export const GET_ARTICLE_COMMENTS = "get_artcile_comments";
-export const POST_ARTICLE_COMMENT = "post_artcile_comments";
+export const GET_ARTICLE_COMMENTS = "get_article_comments";
+export const POST_ARTICLE_COMMENT = "post_article_comments";
 
+/* show profile */
+export const GET_SHOWUSER = "get_showUser";

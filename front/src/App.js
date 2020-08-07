@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Articles from "./components/Articles/Articles";
 import Article from "./components/Articles/Article";
 import ShippingCost from "./components/ShippingCost/ShippingCost";
-// eslint-disable-next-line
 import Header from "./components/Header/Header";
 import Registry from "./components/Authentication";
 import Search from "./components/Articles/Search";
 import Cart from "./components/ShippingCart/ShippingCart";
+import ShowUser from "./components/showUser/showUser";
+
 import "./style/App.scss";
 
 function App() {
@@ -40,9 +41,14 @@ function App() {
           <Route path="/registry">
             <Registry />
           </Route>
-        </Switch>
-      </Router>
-    </div>
+
+          <Route path="/showUser">
+            <ShowUser />
+          </Route>
+
+          </Switch>
+        </Router>
+      </div>
   );
 }
 

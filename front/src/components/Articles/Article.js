@@ -37,7 +37,9 @@ function PageArticleShow() {
             <br/>
             {article.price}
             <br/>
-            <img src={article.images} alt={article.name} />
+            {article.images?.map((image) => (
+                <img key={image.id} src={image.url} alt={image.url} />
+            ))}
             <hr/>
             {comment['hydra:member']?.map(comment => (
                 <div key={comment.id}>

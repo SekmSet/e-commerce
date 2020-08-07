@@ -17,10 +17,10 @@ export function addToCart({article}){
         };
 }
 
-export async function removeFromCart({id}){
+export function removeFromCart({article}){
     return {
         type: REMOVE_FROM_CART,
-        id,
+        article,
     };
 }
 

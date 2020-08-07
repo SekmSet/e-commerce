@@ -27,7 +27,6 @@ function ArticlesShow() {
                     <button onClick={e => handleAddCart(e, article)}>
                         Add to cart
                     </button>
-
                     <hr/>
                 </div>
             ))}

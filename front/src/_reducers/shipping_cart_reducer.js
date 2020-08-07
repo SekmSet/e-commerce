@@ -1,7 +1,5 @@
 import {
-    EMPTY_CART,
     SUB_QUANTITY,
-    ADD_QUANTITY,
     REMOVE_FROM_CART,
     ADD_TO_CART,
 } from "../_actions/ACTION_TYPES";

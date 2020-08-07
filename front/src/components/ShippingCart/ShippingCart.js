@@ -12,7 +12,6 @@ function Cart() {
         dispatch(subtractQuantity({article}));
     };
     const handleEmpty = (e, article) => {
-
         dispatch(removeFromCart({article}));
     };
 

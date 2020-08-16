@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 // eslint-disable-next-line
 import { Link, useHistory } from "react-router-dom";
 import { getArticles } from "../../_actions/articles_actions";
-import { addToCart } from "../../_actions/shipping_cart_action";
+// Should add to card on the btn press
+// import { addToCart } from "../../_actions/shipping_cart_action";
 import { TimelineMax, Power1, Bounce } from "gsap";
 import { pageTransition } from "../../animations/Transitions";
 

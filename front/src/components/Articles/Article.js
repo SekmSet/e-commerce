@@ -13,7 +13,7 @@ import {
 function PageArticleShow() {
   const [resum, setResum] = useState("");
   const [note, setNote] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
 
   const article = useSelector((state) => state.articles.show);

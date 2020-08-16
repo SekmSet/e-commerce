@@ -1,4 +1,4 @@
-// import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { pageTransition } from "../../animations/Transitions";
@@ -13,6 +13,7 @@ import {
 function PageArticleShow() {
   const [resum, setResum] = useState("");
   const [note, setNote] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
 
   const article = useSelector((state) => state.articles.show);
@@ -62,13 +63,6 @@ function PageArticleShow() {
         ))}
       </div>
 
-      {comment["hydra:member"]?.map((comment) => (
-        <div key={comment.id}>
-          {comment.user.username} - {comment.comment} - {comment.note}
-          <br />
-        </div>
-      ))}
-
       <div className="details">
         <div className="titles">
           <h2 className="name tk-ivymode">{article.name}</h2>
@@ -94,6 +88,18 @@ function PageArticleShow() {
             Buy
           </div>
         </button>
+        <div className="comments">
+          <h5 className="tk-linotype-didot">Comments</h5>
+          {comment["hydra:member"]?.map((comment) => (
+            <div key={comment.id} className="comment">
+              <span className="username">{comment.user.username}</span>
+              <p>{comment.comment}</p>
+              <span>Note : {comment.note}</span>
+
+              <br />
+            </div>
+          ))}
+        </div>
       </div>
 
       {user.loginSucces && (

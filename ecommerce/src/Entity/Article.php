@@ -75,9 +75,17 @@ class Article
      */
     private $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Stock::class, mappedBy="articles")
+     */
+    private $stocks;
+
+
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->stocks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,4 +183,42 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return Collection|Stock[]
+     */
+
+    /**
+     * @return Collection|Stock[]
+     */
+    public function getStocks(): Collection
+    {
+        return $this->stocks;
+    }
+
+    public function addStock(Stock $stock): self
+    {
+        if (!$this->stocks->contains($stock)) {
+            $this->stocks[] = $stock;
+            $stock->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStock(Stock $stock): self
+    {
+        if ($this->stocks->contains($stock)) {
+            $this->stocks->removeElement($stock);
+            // set the owning side to null (unless already changed)
+            if ($stock->getArticles() === $this) {
+                $stock->setArticles(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 }

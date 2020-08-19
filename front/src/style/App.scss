@@ -3,7 +3,54 @@
 @import "./component/header.scss";
 @import "./component/login.scss";
 @import "./component/register.scss";
+@import "./component/articles.scss";
+@import "./component/article.scss";
+@import "./component/header.scss";
+@import "./fonts.scss";
+* {
+  box-sizing: border-box;
+  font-family: transat-text, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-color: $coolBg;
+  &.dark-mode {
+    background-color: $coolBlack !important;
+    * {
+      color: $coolWhite;
+    }
+    h1 {
+      color: $coolTitle;
+    }
+  }
+}
 
-*{
-    box-sizing: border-box;
+#anim {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: $coolYellow;
+  display: none;
+}
+body {
+  background-color: $coolBg;
+  &.dark-mode {
+    background-color: $coolBlack !important;
+    * {
+      color: $coolWhite;
+    }
+    h1 {
+      color: $coolTitle;
+    }
+  }
+}
+
+#anim {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: $coolYellow;
+  display: none;
 }

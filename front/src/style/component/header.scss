@@ -1,4 +1,6 @@
 header {
+  position: absolute;
+  z-index: 500;
     display: flex;
     flex-direction: row;
     .logo-block {

@@ -12,7 +12,7 @@ import "./style/App.scss";
 
 function App() {
   return (
-    <div className="App dark-mode">
+    <div className="App">
       <div id="anim"></div>
       <Router>
         {/* <Header /> */}

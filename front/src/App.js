@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <div id="anim"></div>
       <Router>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Route path="/cart">
             <Cart />

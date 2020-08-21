@@ -3,6 +3,13 @@
   width: 100%;
   justify-content: space-around;
   flex-wrap: wrap;
+  .product-sheet{
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 45vh;
+    left: 40vw;
+    font-size: 50px;
+  }
   .images {
     width: 30%;
     height: 100vh;
@@ -18,6 +25,7 @@
     }
   }
   .details {
+    margin-top: 150px;
     width: 30%;
     @include media("<=phone") {
       width: 100%;
@@ -30,6 +38,9 @@
     }
     .titles {
       margin-bottom: 10%;
+    }
+    .description{
+      font-weight: bold;
     }
     .add-to-cart {
       background-color: transparent;

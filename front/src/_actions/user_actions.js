@@ -6,7 +6,7 @@ import {
   LOGOUT_USER,
   GET_USERS,
 } from "./ACTION_TYPES";
-import {AUTHENTICATION_SERVER, USER_SERVER} from "../config";
+import { AUTHENTICATION_SERVER, USER_SERVER } from "../config";
 
 export async function getUsers() {
   const request = await axios
@@ -18,9 +18,9 @@ export async function getUsers() {
   };
 }
 
-export async function registerUser({username, name, surname, email, password, phone}) {
+export async function registerUser({ username, name, surname, email, password, phone }) {
   const request = await axios
-    .post(`${USER_SERVER}`, {username, name, surname, email, password, phone})
+    .post(`${USER_SERVER}`, { username, name, surname, email, password, phone })
     .then((response) => response.data);
   return {
     type: REGISTER_USER,
@@ -28,9 +28,9 @@ export async function registerUser({username, name, surname, email, password, ph
   };
 }
 
-export async function loginUser({username, password}) {
+export async function loginUser({ username, password }) {
   const request = await axios
-    .post(`${AUTHENTICATION_SERVER}`, {username, password})
+    .post(`${AUTHENTICATION_SERVER}`, { username, password })
     .then((response) => response.data);
 
   return {

@@ -11,31 +11,31 @@ const fetchHydra = (url, options = {}) => baseFetchHydra(url, {
   headers: new Headers(fetchHeaders),
 });
 const apiDocumentationParser = entrypoint => parseHydraDocumentation(entrypoint, { headers: new Headers(fetchHeaders) })
-    .then(
-        ({ api }) => ({ api }),
-        (result) => {
-          switch (result.status) {
-            case 401:
-              return Promise.resolve({
-                api: result.api,
-                customRoutes: [
-                  <Route path="/" render={() => {
-                    return window.localStorage.getItem("token") ? window.location.reload() : <Redirect to="/login" />
-                  }} />
-                ],
-              });
+  .then(
+    ({ api }) => ({ api }),
+    (result) => {
+      switch (result.status) {
+        case 401:
+          return Promise.resolve({
+            api: result.api,
+            customRoutes: [
+              <Route path="/" render={() => {
+                return window.localStorage.getItem("token") ? window.location.reload() : <Redirect to="/login" />
+              }} />
+            ],
+          });
 
-            default:
-              return Promise.reject(result);
-          }
-        },
-    );
+        default:
+          return Promise.reject(result);
+      }
+    },
+  );
 const dataProvider = baseHydraDataProvider(entrypoint, fetchHydra, apiDocumentationParser);
 
 export default () => (
-    <HydraAdmin
-        dataProvider={ dataProvider }
-        authProvider={ authProvider }
-        entrypoint={ entrypoint }
-    />
+  <HydraAdmin
+    dataProvider={dataProvider}
+    authProvider={authProvider}
+    entrypoint={entrypoint}
+  />
 );

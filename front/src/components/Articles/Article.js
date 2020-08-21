@@ -57,6 +57,7 @@ function PageArticleShow() {
   };
   return (
     <div className="article-container">
+      <h2 className="product-sheet tk-ivymode">- FICHE PRODUIT</h2>
       <div className="images">
         {article.images?.map((image) => (
           <img src={image.url} alt={article.name} key={image.id} />

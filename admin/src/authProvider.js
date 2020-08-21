@@ -1,5 +1,5 @@
 const authProvider = {
-    login: ({ username, password }) =>  {
+    login: ({ username, password }) => {
         const request = new Request('http://localhost:8000/authentication_token', {
             method: 'POST',
             body: JSON.stringify({ username, password }),

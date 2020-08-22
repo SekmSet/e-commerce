@@ -1,10 +1,10 @@
 name: Build and Deploy back to cloud run
 
-#on:
-#  release:
-#    types: [created]
-
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
+      - develop
 
 defaults:
   run:

@@ -8,6 +8,8 @@ COPY ./docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 WORKDIR /var/www/html/
 COPY ./ /var/www/html
 
+RUN mv .env.exemple .env
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
 

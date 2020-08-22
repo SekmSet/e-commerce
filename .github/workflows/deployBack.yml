@@ -33,7 +33,7 @@ jobs:
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          version: '270.0.0'
+          version: '306.0.0'
           service_account_email: ${{ secrets.GOOGLE_EMAIL }}
           service_account_key: ${{ secrets.GOOGLE_KEY }}
 
@@ -53,18 +53,24 @@ jobs:
         run: |
           docker push $REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA
 
-      # Update .env.prod
-      - name: Add DATABASE_URL to .env.prod
+      # Deploy
+      - name: deploy
         run: |
-          echo "$DATABASE_URL" >> .env.prod
+          echo "DATABASE_URL=$DATABASE_URL" >> .env.prod
+          ENVS=$(cat ".env.prod" | xargs | sed 's/ /,/g')
+          gcloud run deploy "$SERVICE_NAME" \
+            --image "$REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA" \
+            --project "$GOOGLE_PROJECT" \
+            --region "$GOOGLE_ZONE" \
+            --platform managed \
+            --allow-unauthenticated \
+            --add-cloudsql-instances "deploy-276111:europe-west1:my-sql-database" \
+            --update-env-vars "$ENVS" \
+            --quiet
 
-      # Deploy the Docker image to Cloudrun
-      - name: Deploy service to Cloud Run
-        uses: stefda/action-cloud-run@v1.0
-        with:
-          image: $REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA
-          service: $SERVICE_NAME
-          project: $GOOGLE_PROJECT
-          region: $GOOGLE_ZONE
-          env: .env.prod
-          service key: ${{ secrets.GOOGLE_KEY }}
+      - name: migrations
+        run: |
+          gcloud builds submit \
+            --project ${GOOGLE_PROJECT} \
+            --config .cloudbuild/seeder-deploy.yaml \
+            --substitutions "_IMAGE=$REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA,_REGION=$GOOGLE_ZONE,_INSTANCE_NAME=my-sql-database,_DATABASE_URL=$DATABASE_URL"

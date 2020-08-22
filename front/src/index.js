@@ -1,16 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { gsap } from "gsap";
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { loadState, saveState } from './localStorage';
-
 
 /*        REDUX IMPORTS        */
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import Reducers from "./_reducers";
 const persistedState = loadState();
+
+// Configure GSAP for production
+gsap.registerPlugin(CSSRulePlugin);
 
 const store = createStore(
   Reducers,

@@ -1,0 +1,62 @@
+name: Build and Deploy front to cloud run
+
+#on:
+#  release:
+#    types: [created]
+
+on: [pull_request]
+
+defaults:
+  run:
+    working-directory: front
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+  GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
+  GITHUB_SHA: ${{ github.sha }}
+  GOOGLE_ZONE: europe-west1
+  IMAGE: ecommerce_front
+  REGISTRY_HOSTNAME: eu.gcr.io
+  SERVICE_NAME: ecommerce-front
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, Deploy And Migrate
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Config gcloud CLI
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '306.0.0'
+          service_account_email: ${{ secrets.GOOGLE_EMAIL }}
+          service_account_key: ${{ secrets.GOOGLE_KEY }}
+
+      # Configure docker to use the gcloud command-line tool as a credential helper
+      - run: |
+          gcloud auth configure-docker
+
+      # Build the Docker image
+      - name: Build
+        run: |
+            docker build -f docker/Dockerfile -t "$REGISTRY_HOSTNAME"/"$GOOGLE_PROJECT"/"$IMAGE":"$GITHUB_SHA" .
+
+      # Push the Docker image to Google Container Registry
+      - name: Publish
+        run: |
+          docker push $REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA
+
+      # Deploy
+      - name: deploy
+        run: |
+           gcloud run deploy "$SERVICE_NAME" \
+            --image "$REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA" \
+            --project "$GOOGLE_PROJECT" \
+            --region "$GOOGLE_ZONE" \
+            --platform managed \
+            --allow-unauthenticated \
+            --quiet

@@ -25,16 +25,16 @@ function App() {
             <ShippingCost />
           </Route>
 
+          <Route path="/articles/search">
+            <Search />
+          </Route>
+
           <Route path="/articles/:id">
             <Article />
           </Route>
 
           <Route path="/articles">
             <Articles />
-          </Route>
-
-          <Route path="/articles/search">
-            <Search />
           </Route>
 
           <Route path="/registry">

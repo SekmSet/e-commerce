@@ -1,6 +1,8 @@
+import {AUTHENTICATION_SERVER} from "./config"
+
 const authProvider = {
     login: ({ username, password }) => {
-        const request = new Request('http://localhost:8000/authentication_token', {
+        const request = new Request(AUTHENTICATION_SERVER, {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -30,7 +32,7 @@ const authProvider = {
     },
     checkAuth: () => localStorage.getItem('token')
         ? Promise.resolve()
-        : Promise.reject({ redirectTo: '/no-access' }),
+        : Promise.reject({ redirectTo: '/login' }),
     getPermissions: params => Promise.resolve(),
 };
 

@@ -15,11 +15,16 @@ function Cart() {
         dispatch(removeFromCart({ article }));
     };
 
-    let result = [];
+    let result = 0;
+    let results = 0;
     return (
         <div className="basket-view">
             <div className="square"></div>
             <div className="basket">
+                {  cart.products.forEach(e => {
+                    results += e.quantity * e.price
+                    console.log(results)
+                })}
                 <h1> PANIER </h1>
                 <button onClick={e => handleEmpty()} className="btn btn-warning">
                     Vider panier
@@ -37,6 +42,8 @@ function Cart() {
                         </div>
                     ))}
                 </div>
+
+                <div>Total price : {results}</div>
 
             </div>
         </div>

@@ -464,6 +464,9 @@
     "twig/twig": {
         "version": "v3.0.4"
     },
+    "webimpress/safe-writer": {
+        "version": "2.0.1"
+    },
     "webmozart/assert": {
         "version": "1.9.1"
     },

@@ -5,9 +5,19 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   GET_USERS,
+  GET_PROFILE,
 } from "./ACTION_TYPES";
-import { AUTHENTICATION_SERVER, USER_SERVER } from "../config";
+import { AUTHENTICATION_SERVER, USER_SERVER, PROFILE_SERVER } from "../config";
 
+export async function getProfile() {
+  const request = await axios
+      .get(`${PROFILE_SERVER}`)
+      .then((response) => response.data);
+  return {
+    type: GET_PROFILE,
+    payload: request,
+  };
+}
 export async function getUsers() {
   const request = await axios
     .get(`${USER_SERVER}`)

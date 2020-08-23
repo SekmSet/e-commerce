@@ -39,6 +39,11 @@ function Header() {
                 )}
                 {user.loginSucces && (
                     <li>
+                        <Link to="/profile" >Profil</Link>
+                    </li>
+                )}
+                {user.loginSucces && (
+                    <li>
                         <button onClick={handleDisconnect}>Deco</button>
                     </li>
                 )}

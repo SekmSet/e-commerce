@@ -44,7 +44,7 @@ function Header() {
                 )}
                 {user.loginSucces && (
                     <li>
-                        <button onClick={handleDisconnect}>Deco</button>
+                        <button className="btn btn-danger" onClick={handleDisconnect}>Logout</button>
                     </li>
                 )}
             </ul>

@@ -1,6 +1,6 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {filterArticles} from "../../_actions/articles_actions";
+import { useDispatch, useSelector } from "react-redux";
+import { filterArticles } from "../../_actions/articles_actions";
 
 function Search() {
     const dispatch = useDispatch();
@@ -28,9 +28,9 @@ function Search() {
             <h1> Articles_show </h1>
             {filteredList['hydra:member']?.map(Article => (
                 <div key={Article.id}>
-                    {Article.name}<br/>
-                    <a href={`/ArticlesShow/${Article.id}`}>Voir</a>
-                    <hr/>
+                    {Article.name}<br />
+                    <a href={`/articles/${Article.id}`}>Voir</a>
+                    <hr />
                 </div>
             ))}
         </div>

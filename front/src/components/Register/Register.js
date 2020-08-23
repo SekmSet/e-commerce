@@ -13,7 +13,11 @@ function Register({ toggle }) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    registerUser({ username, name, surname, email, password, phone }).then((data) => dispatch(data));
+    registerUser({ username, name, surname, email, password, phone })
+        .then((data) => dispatch(data))
+        .then((() => {
+          toggle("login-view", "register-view");
+        }));
   };
 
   return (

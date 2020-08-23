@@ -1,15 +1,26 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { loginUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
 function Login({ toggle }) {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    loginUser({ username, password }).then((data) => dispatch(data));
+    loginUser({ username, password })
+        .then((data) => dispatch(data))
+        .then((() => {
+          history.push('/');
+        }))
+        .catch((v) => {
+          setError(v.request.response.message);
+        });
   };
 
   return (
@@ -23,9 +34,15 @@ function Login({ toggle }) {
 
           {/* PINK SQUARE */}
           <div className="side-box"></div>
-
           {/* FORM BLOCK */}
           <div className="login-form">
+
+            {error && (
+                <div  className="error">
+                  {error}
+                </div>
+            )}
+
 
             <div className="username">
               <label htmlFor="username">Username</label>

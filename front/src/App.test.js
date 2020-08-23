@@ -11,26 +11,3 @@ it('renders without crashing', () => {
     render(<App />);
 });
 
-it('render app when not logged in', () => {
-    render(<App />, {
-        initialState: {
-            user: {
-                loginSucces: false
-            }
-        }
-    });
-
-    expect(screen.getAllByText('SignUp'))
-});
-
-it('render app when logged in', () => {
-    render(<App />, {
-        initialState: {
-            user: {
-                loginSucces: true
-            }
-        }
-    });
-
-    expect(screen.getAllByText('Deco'))
-});

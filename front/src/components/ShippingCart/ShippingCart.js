@@ -19,7 +19,7 @@ function Cart() {
         <div className="basket-view">
             <div className="square"></div>
             <div className="basket">
-                <h1> - PANIER </h1>
+                <h1> PANIER </h1>
                 <button onClick={e => handleEmpty()} className="btn btn-warning">
                     Vider panier
                 </button>

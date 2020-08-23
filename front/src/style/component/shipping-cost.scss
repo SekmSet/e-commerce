@@ -1,0 +1,52 @@
+.shippingCost-view{
+    display: flex;
+    .container-shippingCost {
+      font-weight: 700;
+        h1{
+            transform: rotate(-90deg);
+            position: absolute;
+            top: 45vh;
+            left: 42vw;
+            @include media("<=tablet") {
+                top: 27vh;
+                left: 35vw;
+                transform: rotate(0deg);
+                margin-left: -65px;
+            }
+        }
+        .shipping-cost{
+            position: relative;
+            margin-top: 13vh;
+            margin-left: 18vw;
+            text-align: center;
+            width: 70%;
+            height: 75vh;
+            overflow-y: scroll;
+            @include media("<=tablet") {
+                width: 70vw;
+                height: 60vh;
+                margin-top: 40vh;
+                margin-left: 12vw;
+            }
+            hr{
+                background-color: $yellow;
+                margin-top: 35px;
+                height: 3px;
+                border-radius: 5px;
+            }
+            h4{
+                font-weight: 900;
+            }
+        }
+    }
+    .square{
+        width: 40vw;
+        height: 75vh;
+        background-color: $yellow;
+        margin-left: 25vw;
+        margin-top: 13vh;
+        @include media("<=tablet") {
+          display: none;
+        }
+    }
+}

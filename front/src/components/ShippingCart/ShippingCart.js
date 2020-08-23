@@ -25,6 +25,7 @@ function Cart() {
             <div className="square"></div>
             <div className="basket">
                 <h1> PANIER </h1>
+                <div className="total-price">Total price : {results}</div>
                 <button onClick={e => handleEmpty()} className="btn btn-warning">
                     Vider panier
                 </button>
@@ -42,7 +43,7 @@ function Cart() {
                     ))}
                 </div>
 
-                <div>Total price : {results}</div>
+
 
             </div>
         </div>

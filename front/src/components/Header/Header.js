@@ -24,6 +24,9 @@ function Header() {
                     <Link to="/articles">Shop</Link>
                 </li>
                 <li>
+                    <Link to="/articles/search">Rechercher</Link>
+                </li>
+                <li>
                     <Link to="/shippingCost">shipping Cost</Link>
                 </li>
                 <li>

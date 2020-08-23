@@ -1,0 +1,36 @@
+.profile-view {
+    h1 {
+        transform: rotate(-90deg);
+        position: absolute;
+        top: 45vh;
+        left: 4vw;
+        font-size: 55px;
+        @include media("<=tablet") {
+            transform: rotate(0deg);
+            top: 25vh;
+            left: 33vw;
+        }
+    }
+    .container-profile {
+        text-align: center;
+        width: 40vw;
+        height: 50vh;
+        margin-left: 10vw;
+        margin-top: 25vh;
+        border: 70px solid $yellow;
+        padding: 70px;
+        font-weight: bold;
+        box-shadow: 30px 30px 30px 20px $grey;
+        @include media("<=tablet") {
+            width: 80vw;
+            height: 50vh;
+            margin-left: 5vw;
+            border: 20px solid $yellow;
+            margin-top: 40vh;
+            padding: 60px 30px;
+        }
+        h2 {
+            font-weight: bold;
+        }
+    }
+}

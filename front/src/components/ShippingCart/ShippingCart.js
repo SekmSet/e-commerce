@@ -1,6 +1,6 @@
 import React from "react";
-import {subtractQuantity, removeFromCart} from "../../_actions/shipping_cart_action";
-import {useDispatch, useSelector} from "react-redux";
+import { subtractQuantity, removeFromCart } from "../../_actions/shipping_cart_action";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function Cart() {
@@ -9,27 +9,34 @@ function Cart() {
 
     const handleSubtractQuantity = (e, article) => {
         e.preventDefault();
-        dispatch(subtractQuantity({article}));
+        dispatch(subtractQuantity({ article }));
     };
     const handleEmpty = (e, article) => {
-        dispatch(removeFromCart({article}));
+        dispatch(removeFromCart({ article }));
     };
 
     return (
-        <div>
-            <h1> Panier </h1>
-            <button onClick={e => handleEmpty()}>
-                Vider panier
-            </button>
-            {cart.products.map(item => (
-
-                <div key={item.id}>
-                    |Article-name : {item.name} | Descri-name : {item.description}  | Quantité-name : {item.quantity}| <br/><br/>
-                    <button onClick={e => handleSubtractQuantity(e, item)}>
-                    Remove one item
-                    </button>
+        <div className="basket-view">
+            <div className="square"></div>
+            <div className="basket">
+                <h1> - PANIER </h1>
+                <button onClick={e => handleEmpty()} className="btn btn-warning">
+                    Vider panier
+                </button>
+                <div className="basket-description">
+                    {cart.products.map(item => (
+                        <div className="container" key={item.id}>
+                            <div className="one-basket">
+                                <button onClick={e => handleSubtractQuantity(e, item)} className="btn btn-danger">X</button>
+                                <h4 className="name-basket"> {item.name} </h4>
+                                <div className="descrip-basket"> {item.description}  </div>
+                                <div className="quantity-basket"> Quantité : {item.quantity} </div><br /><br />
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            ))}
+
+            </div>
         </div>
     )
 }

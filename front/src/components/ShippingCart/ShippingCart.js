@@ -15,7 +15,6 @@ function Cart() {
         dispatch(removeFromCart({ article }));
     };
 
-    let result = 0;
     let results = 0;
     cart.products.forEach(e => {
         results += e.quantity * e.price
@@ -37,7 +36,7 @@ function Cart() {
                                 <h4 className="name-basket"> {item.name} </h4>
                                 <div className="descrip-basket"> {item.description}  </div>
                                 <div className="quantity-basket"> Quantité : {item.quantity} </div><br /><br />
-                                <div className="quantity-basket">  Prix de l'article : {result = [item.price*item.quantity]} </div><br /><br />
+                                <div className="quantity-basket">  Prix de l'article : {item.price*item.quantity} </div><br /><br />
                             </div>
                         </div>
                     ))}

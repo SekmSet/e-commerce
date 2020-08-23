@@ -1,4 +1,5 @@
 import React from "react";
+import {ToastContainer} from "react-toastify";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Articles from "./components/Articles/Articles";
 import Article from "./components/Articles/Article";
@@ -9,6 +10,7 @@ import Search from "./components/Articles/Search";
 import Profile from "./components/profile/profile";
 import Cart from "./components/ShippingCart/ShippingCart";
 
+import 'react-toastify/dist/ReactToastify.css';
 import "./style/App.scss";
 
 function App() {
@@ -52,6 +54,17 @@ function App() {
 
                 </Switch>
             </Router>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     );
 }

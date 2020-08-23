@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { pageTransition } from "../../animations/Transitions";
@@ -60,6 +61,16 @@ function PageArticleShow() {
   const addBasket = (e) => {
     e.preventDefault();
     dispatch(addToCart({ article }));
+    toast("🦄 You article is add to your cart", {
+     position: "bottom-right",
+     autoClose: 5000,
+     hideProgressBar: false,
+     closeOnClick: true,
+     pauseOnHover: false,
+     draggable: true,
+     progress: undefined,
+    });
+
   };
   return (
     <div className="article-container">
@@ -74,6 +85,7 @@ function PageArticleShow() {
         <div className="titles">
           <h2 className="name tk-ivymode">{article.name}</h2>
           <span className="color"> {article.color} </span>
+          <div><span>{article.price}€</span></div>
         </div>
         <p className="description">{article.description}</p>
         <p className="description">{article.description}</p>
@@ -135,8 +147,6 @@ function PageArticleShow() {
           </form>
         )}
       </div>
-
-
     </div>
   );
 }

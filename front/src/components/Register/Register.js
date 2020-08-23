@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
+import {toast} from "react-toastify";
 
 function Register({ toggle }) {
   const [username, setUsername] = useState("");
@@ -16,6 +17,15 @@ function Register({ toggle }) {
     registerUser({ username, name, surname, email, password, phone })
         .then((data) => dispatch(data))
         .then((() => {
+          toast("🦄 You can login !", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+          });
           toggle("login-view", "register-view");
         }));
   };

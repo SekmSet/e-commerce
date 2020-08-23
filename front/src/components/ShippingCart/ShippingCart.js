@@ -1,6 +1,7 @@
 import React from "react";
 import { subtractQuantity, removeFromCart } from "../../_actions/shipping_cart_action";
 import { useDispatch, useSelector } from "react-redux";
+import {toast} from "react-toastify";
 
 
 function Cart() {
@@ -9,9 +10,27 @@ function Cart() {
 
     const handleSubtractQuantity = (e, article) => {
         e.preventDefault();
+        toast(`🦄 1 ${article.name} is delete` , {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+        });
         dispatch(subtractQuantity({ article }));
     };
     const handleEmpty = (e, article) => {
+        toast("🦄 Your cart is now empty" , {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+        });
         dispatch(removeFromCart({ article }));
     };
 

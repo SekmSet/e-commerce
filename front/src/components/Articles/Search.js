@@ -33,7 +33,7 @@ function Search() {
                         <div>
                             {filteredList['hydra:member']?.map(Article => (
                                 <div key={Article.id}>
-                                    <h4 className="name-search">{Article.name}</h4><br />
+                                    <h4 className="name-search">{Article.name} - {Article.price}€</h4><br />
                                     <a className="link-search" href={`/articles/${Article.id}`}>Voir</a>
                                     <hr />
                                 </div>

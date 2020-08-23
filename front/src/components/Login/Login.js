@@ -7,7 +7,6 @@ import {toast} from "react-toastify";
 function Login({ toggle }) {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -54,14 +53,6 @@ function Login({ toggle }) {
           <div className="side-box"></div>
           {/* FORM BLOCK */}
           <div className="login-form">
-
-            {error && (
-                <div  className="error">
-                  {error}
-                </div>
-            )}
-
-
             <div className="username">
               <label htmlFor="username">Username</label>
               <input

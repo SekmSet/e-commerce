@@ -18,6 +18,10 @@ function App() {
             <Router>
                 <Header />
                 <Switch>
+                    <Route exact path="/">
+                        <Articles />
+                    </Route>
+
                     <Route path="/cart">
                         <Cart />
                     </Route>

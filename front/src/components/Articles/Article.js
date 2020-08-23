@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { pageTransition } from "../../animations/Transitions";
 import { TimelineMax } from "gsap";
+import { addToCart } from "../../_actions/shipping_cart_action";
 
 import {
   getArticle,
@@ -35,25 +36,30 @@ function PageArticleShow() {
   };
 
   const handleMouseMove = ({ screenY, screenX, clientX }) => {
-    const tl = new TimelineMax();
-    //We must calculate the button position onHover
-    const x =
-      screenX -
-      buttonRef.current.offsetLeft -
-      btnTextRef.current.offsetLeft -
-      10;
-    //Then apply these position to our GSAP
-    tl.to(btnTextRef.current, 0.15, {
-      backgroundColor: "#4f659f",
-      x: x,
-      ease: "Power5.easeOut",
-    });
+    // const tl = new TimelineMax();
+    // //We must calculate the button position onHover
+    // const x =
+    //   screenX -
+    //   buttonRef.current.offsetLeft -
+    //   btnTextRef.current.offsetLeft -
+    //   10;
+    // //Then apply these position to our GSAP
+    // tl.to(btnTextRef.current, 0.15, {
+    //   backgroundColor: "#4f659f",
+    //   x: x,
+    //   ease: "Power5.easeOut",
+    // });
     console.log(screenY, btnTextRef.current.offsetTop);
   };
 
   const handleMouseLeave = () => {
     const tl = new TimelineMax();
     tl.to(btnTextRef.current, 0.2, { x: 0, ease: "Expo.easeOut" });
+  };
+
+  const addBasket = (e) => {
+    e.preventDefault();
+    dispatch(addToCart({ article }));
   };
   return (
     <div className="article-container">
@@ -84,6 +90,7 @@ function PageArticleShow() {
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           ref={buttonRef}
+          onClick={addBasket}
         >
           <div className="btn-text" ref={btnTextRef}>
             Buy
@@ -101,34 +108,35 @@ function PageArticleShow() {
             </div>
           ))}
         </div>
+        {user.loginSucces && (
+          <form>
+            <label htmlFor="story">Résumé :</label>
+
+            <label htmlFor="note">Ma note (1-5):</label>
+            <input
+              type="number"
+              name="note"
+              id="note"
+              min="1"
+              max="5"
+              onChange={(e) => setNote(e.target.value)}
+            />
+
+            <textarea
+              id="comment"
+              name="comment"
+              rows="5"
+              cols="33"
+              onChange={(e) => setResum(e.target.value)}
+              placeholder={"Dite nous votre avis …"}
+            />
+
+            <button onClick={handleComment}>Envoyer</button>
+          </form>
+        )}
       </div>
 
-      {user.loginSucces && (
-        <form>
-          <label htmlFor="story">Résumé :</label>
 
-          <label htmlFor="note">Ma note (1-5):</label>
-          <input
-            type="number"
-            name="note"
-            id="note"
-            min="1"
-            max="5"
-            onChange={(e) => setNote(e.target.value)}
-          />
-
-          <textarea
-            id="comment"
-            name="comment"
-            rows="5"
-            cols="33"
-            onChange={(e) => setResum(e.target.value)}
-            placeholder={"Dite nous votre avis …"}
-          />
-
-          <button onClick={handleComment}>Envoyer</button>
-        </form>
-      )}
     </div>
   );
 }

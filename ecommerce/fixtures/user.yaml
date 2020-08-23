@@ -1,0 +1,21 @@
+App\Entity\User:
+  user (template):
+    username: <firstName()>
+    name: <name()>
+    surname: <lastName()>
+    phone: <phoneNumber()>
+    email: <email()>
+    plainPassword: 'password'
+
+  user_{1..10} (extends user):
+    roles: []
+
+  user_api (extends user):
+    username: 'user'
+    email: 'user@user.fr'
+    roles: []
+    
+  user_admin (extends user):
+    username: 'admin'
+    email: 'admin@admin.fr'
+    roles: [ROLE_ADMIN]

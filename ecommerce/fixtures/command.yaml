@@ -1,0 +1,15 @@
+#parameters:
+#  profileArray: ['In shipping', 'delivered', 'problems']
+App\Entity\Command:
+  command_{1..10}:
+    user: '@user_*'
+    adress: '@adress_*'
+    shipping_cost: '@shippingCost_*'
+    reduction: '@reduction_*'
+    payment: '@creditCard_*'
+    command_number: <numberBetween('1','9999')>
+    weight: <numberBetween('1','1000')>
+    total_price: <randomFloat('1','999999')>
+    status: <randomElement(['In shipping', 'delivered', 'problems'])>
+
+

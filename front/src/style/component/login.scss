@@ -1,0 +1,125 @@
+.login-view {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    @include media("<=1024px") {
+        flex-direction: column;
+    }
+    .login-left {
+        width: 95%;
+        height: 100%;
+        .login-center {
+            width: 70%;
+            height: 65%;
+            border: none;
+            display: flex;
+            margin: auto;
+            margin-top: 14vh;
+            @include media("<=phone") {
+                flex-direction: column;
+                width: 90%;
+            }
+            .side-box {
+                width: 50%;
+                height: 100%;
+                background-color: $purple;
+                background-size: 100%;
+                @include media("<=1024px") {
+                    display: none;
+                }
+            }
+            .login-form {
+                width: 50%;
+                height: 100%;
+                margin: auto;
+                box-shadow: 7px 3px 5px 0 rgb(207, 207, 207);
+                padding: 15% 0;
+                @include media("<=1024px") {
+                    width: 100%;
+                    height: 95%;
+                }
+                .username,
+                .password,
+                .error {
+                    font-family: 'Quicksand', sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    text-transform: uppercase;
+                    padding-left: 20%;
+                    letter-spacing: 1px;
+                }
+                .error {
+                    color: red;
+                    font-weight: bold;
+                }
+                .password {
+                    margin-top: 60px;
+                }
+                input {
+                    border: none;
+                    border-bottom: 1px solid black;
+                    background-color: rgba(255, 255, 255, 0);
+                    width: 80%;
+                }
+                .login-btn {
+                    border-radius: 25px;
+                    padding: 10px 40px;
+                    background-color: $purple;
+                    font-weight: bold;
+                    color: $white;
+                    border: none;
+                    margin-top: 60px;
+                    position: relative;
+                    left: 62%;
+                    @include media("<=phone") {
+                       left: 53%;
+                    }
+                }
+            }
+        }
+    }
+    .login-right {
+        height: 100%;
+        width: 5%;
+        box-shadow: -2px 0 15px 1px rgb(122, 122, 122);
+        padding: 25px;
+        @include media("<=1024px") {
+            display: flex;
+            width: 100%;
+            height: 10%;
+            position: relative;
+            top: 100;
+            padding: 0;
+        }
+        .button-swipe {
+            position: relative;
+            top: 27vh;
+            color: $purple;
+            font-size: 40px;
+            @include media("<=1024px") {
+                top: 0;
+                left: 80%;
+                margin-top: -10px;
+            }
+        }
+        .text-swipe {
+            transform: rotate(-90deg);
+            color: $purple;
+            position: relative;
+            top: 48vh;
+            font-weight: bold;
+            font-size: 40px;
+            font-family: 'Signika', sans-serif;
+            @include media("<=1024px") {
+                transform: rotate(0deg);
+                top: 0;
+                left: 10%;
+                font-size: 35px;
+            }
+        }
+    }
+}

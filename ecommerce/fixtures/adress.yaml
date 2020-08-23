@@ -1,0 +1,7 @@
+App\Entity\Adress:
+  adress_{1..10}:
+    street: <streetAddress()>
+    city: <city()>
+    postal_c: <numberBetween(10000, 99999)>
+    country: <country()>
+    user: '@user_*'

@@ -1,0 +1,76 @@
+name: Build and Deploy back to cloud run
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+defaults:
+  run:
+    working-directory: ecommerce
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
+  GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
+  GITHUB_SHA: ${{ github.sha }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  GOOGLE_ZONE: europe-west1
+  IMAGE: ecommerce_back
+  REGISTRY_HOSTNAME: eu.gcr.io
+  SERVICE_NAME: ecommerce-back
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, Deploy And Migrate
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup gcloud CLI
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '306.0.0'
+          service_account_email: ${{ secrets.GOOGLE_EMAIL }}
+          service_account_key: ${{ secrets.GOOGLE_KEY }}
+
+      # Configure docker to use the gcloud command-line tool as a credential helper
+      - run: |
+          # Set up docker to authenticate
+          # via gcloud command-line tool.
+          gcloud auth configure-docker
+
+      # Build the Docker image
+      - name: Build
+        run: |
+            docker build -f docker/Dockerfile -t "$REGISTRY_HOSTNAME"/"$GOOGLE_PROJECT"/"$IMAGE":"$GITHUB_SHA" .
+
+      # Push the Docker image to Google Container Registry
+      - name: Publish
+        run: |
+          docker push $REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA
+
+      # Deploy
+      - name: deploy
+        run: |
+          echo "DATABASE_URL=$DATABASE_URL" >> .env.prod
+          ENVS=$(cat ".env.prod" | xargs | sed 's/ /,/g')
+          gcloud run deploy "$SERVICE_NAME" \
+            --image "$REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA" \
+            --project "$GOOGLE_PROJECT" \
+            --region "$GOOGLE_ZONE" \
+            --platform managed \
+            --allow-unauthenticated \
+            --add-cloudsql-instances "deploy-276111:europe-west1:my-sql-database" \
+            --update-env-vars "$ENVS" \
+            --quiet
+
+      - name: migrations
+        run: |
+          gcloud builds submit \
+            --project ${GOOGLE_PROJECT} \
+            --config .cloudbuild/seeder-deploy.yaml \
+            --substitutions "_IMAGE=$REGISTRY_HOSTNAME/$GOOGLE_PROJECT/$IMAGE:$GITHUB_SHA,_REGION=$GOOGLE_ZONE,_INSTANCE_NAME=my-sql-database,_DATABASE_URL=$DATABASE_URL"

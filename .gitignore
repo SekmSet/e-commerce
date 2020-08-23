@@ -1,2 +1,4 @@
 .idea
 /vendor/
+ecommerce/.env
+/front/node_modules/

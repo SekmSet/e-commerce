@@ -1,0 +1,76 @@
+.search-view {
+    display: flex;
+
+    h1 {
+        transform: rotate(-90deg);
+        position: absolute;
+        top: 45vh;
+        left: 1vw;
+        @include media("<=tablet") {
+            margin-left: -100px;
+          }
+    }
+    .square {
+        width: 40vw;
+        height: 75vh;
+        background-color: $yellow;
+        margin-left: -15vw;
+        margin-top: 13vh;
+        @include media("<=tablet") {
+            display: none;
+        }
+    }
+    .search {
+        margin-left: 20vw;
+        .container-input {
+            margin-top: 14vh;
+            display: flex;
+            flex-direction: column;
+            @include media("<=tablet") {
+              margin-top: 25vh;
+            }
+            label{
+                font-weight: bold;
+                color: $orange;
+                font-size: 25px;
+            }
+            input{
+                width: 50%;
+            }
+        }
+
+        .all-resultSearch {
+            margin-top: 5vh;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            height: 62vh;
+            width: 30vw;
+            overflow: scroll;
+            padding-top: 27vh;
+            @include media("<=tablet") {
+                margin-top: 5vh;
+                padding-top: 45vh;
+                width: 100%;
+                height: 59vh;
+              }
+            hr {
+                background-color: $yellow;
+                margin-top: 35px;
+                height: 3px;
+                border-radius: 5px;
+            }
+            .name-search {
+                font-weight: bold;
+            }
+            .link-search {
+                text-decoration: none;
+                color: $yellow;
+                &:hover {
+                    color: $lightblue;
+                }
+            }
+        }
+    }
+}

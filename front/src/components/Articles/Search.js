@@ -16,23 +16,34 @@ function Search() {
     }
 
     return (
-        <div>
-            <label>
-                Filter Name
-                {/*<select className="form-filter"*/}
-                {/*        >*/}
-                {/*        <option value={Articles.name}>ALL</option>*/}
-                {/*</select>*/}
-                <input type="text" onChange={(e) => searchArticle(e.target.value)} />
-            </label>
-            <h1> Articles_show </h1>
-            {filteredList['hydra:member']?.map(Article => (
-                <div key={Article.id}>
-                    {Article.name}<br />
-                    <a href={`/articles/${Article.id}`}>Voir</a>
-                    <hr />
+        <div className="search-view">
+            <h1> Search Article </h1>
+            <div className="search col-sm-12 col-md-8 col-lg-6">
+                <div className="container">
+                    <div className="row justify-content-center container-input">
+
+                        <label> Search by Name </label>
+                        <input className="search-input" type="text" onChange={(e) => searchArticle(e.target.value)} />
+
+                    </div>
                 </div>
-            ))}
+
+                <div className="container">
+                    <div className="row justify-content-center all-resultSearch">
+                        <div>
+                            {filteredList['hydra:member']?.map(Article => (
+                                <div key={Article.id}>
+                                    <h4 className="name-search">{Article.name}</h4><br />
+                                    <a className="link-search" href={`/articles/${Article.id}`}>Voir</a>
+                                    <hr />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="square"></div>
+
         </div>
     )
 }

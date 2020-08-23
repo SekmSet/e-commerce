@@ -8,6 +8,11 @@ function Cart() {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.shippingCart);
 
+    let shippingCoast = 0;
+    if(cart.products.length > 0){
+        shippingCoast = Math.floor(Math.random() * Math.floor(10))+1;
+    }
+
     const handleSubtractQuantity = (e, article) => {
         e.preventDefault();
         toast(`🦄 1 ${article.name} is delete` , {
@@ -43,7 +48,11 @@ function Cart() {
             <div className="square"></div>
             <div className="basket">
                 <h1> PANIER </h1>
-                <div className="total-price">Total price : {results}</div>
+                <div className="total-price">Total TTC : <b>{results + shippingCoast}€</b></div>
+                <div className="">Total price : <b>{results}€</b></div>
+                <div className="">Delivery price : <b>{shippingCoast}€</b></div>
+
+                <hr/>
                 <button onClick={e => handleEmpty()} className="btn btn-warning">
                     Vider panier
                 </button>

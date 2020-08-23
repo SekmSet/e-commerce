@@ -1,12 +1,10 @@
 name: Build and Deploy admin to cloud run
 
-#on:
-#  push:
-#    branches:
-#      - master
-#      - develop
-
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
+      - develop
 
 defaults:
   run:

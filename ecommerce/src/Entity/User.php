@@ -19,7 +19,10 @@ use App\Controller\Action\GetMeAction;
  *     attributes={"security"="is_granted('ROLE_ADMIN')"},
  *     collectionOperations={
  *          "get",
- *          "post" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')" },
+ *          "post" = {
+ *              "security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
+ *              "controller" = App\Controller\Api\UserCreateController::class
+ *          },
  *     },
  *     itemOperations={
  *          "get" = {"security" = "is_granted('ROLE_ADMIN') or object == user" },

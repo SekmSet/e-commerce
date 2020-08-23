@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { loginUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
+import {toast} from "react-toastify";
 
 function Login({ toggle }) {
   const [password, setPassword] = useState("");
@@ -16,10 +17,27 @@ function Login({ toggle }) {
     loginUser({ username, password })
         .then((data) => dispatch(data))
         .then((() => {
+          toast("🦄 You are ready to shop", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+          });
           history.push('/');
         }))
-        .catch((v) => {
-          setError(v.request.response.message);
+        .catch(() => {
+          toast.error("🦄 Your informations are bad …", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+          });
         });
   };
 

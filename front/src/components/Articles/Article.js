@@ -61,7 +61,7 @@ function PageArticleShow() {
   const addBasket = (e) => {
     e.preventDefault();
     dispatch(addToCart({ article }));
-    toast("You article is add to your cart", {
+    toast("🦄 You article is add to your cart", {
      position: "bottom-right",
      autoClose: 5000,
      hideProgressBar: false,
